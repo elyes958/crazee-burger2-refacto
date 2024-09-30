@@ -1,11 +1,15 @@
 import Login from "./components/pages/login/Login";
-
+import {BrowserRouter, Routes, Route, Link,} from "react-router-dom";
+import OrderPage from "./components/pages/OrderPage";
 
 function App() {
   return (
-    <div>
-        <Login/>
-    </div>
+    <BrowserRouter>
+     <Routes>
+      <Route path="/" element={<Login/>} />
+      <Route path="OrderPage/:userId" element={<OrderPage/>} />
+     </Routes>
+    </BrowserRouter>
   );
 }
 
