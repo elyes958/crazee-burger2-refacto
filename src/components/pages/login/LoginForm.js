@@ -10,9 +10,7 @@ export default function LoginForm() {
   // comportement
   const handleSubmit = (event) => {
     event.preventDefault(); // il faut recharger la page pour vider le formulaire et donc l'input(non en faite je me suis tromper il faut synchroniser l'input avec la valeur du state(inputValue) pour faire cela !)
-    // console.log(event);
-    // alert("Bonjour " + inputValue);
-    navigate(`/OrderPage/${inputValue}`)
+    navigate(`/OrderPage/${inputValue}`);
     setInputValue("");
   }
       
