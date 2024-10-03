@@ -27,7 +27,6 @@ export default function LoginForm() {
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
      <h1>Bienvenue chez nous !</h1>
-     <br />
      <hr />
      <h2>Connectez-vous</h2>
      <div className="inputAndButton">
@@ -46,7 +45,7 @@ export default function LoginForm() {
 
 
 const LoginFormStyled = styled.form`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   color: ${theme.colors.white};
   display: flex;
   flex-direction: column;
@@ -54,6 +53,7 @@ const LoginFormStyled = styled.form`
 
   
   h1{
+    margin-top: 72px;
     width: 310px;
     height: 61px;
     font-family: "Amatic Sc";
@@ -63,6 +63,7 @@ const LoginFormStyled = styled.form`
   }
 
   hr{
+    margin: 0;
     width: 400px;
     height: 3px;
     border: 1px;
@@ -70,6 +71,8 @@ const LoginFormStyled = styled.form`
   }
 
   h2{
+    margin-top: 40px;
+    margin-bottom: 18px;
     width: 171px;
     height: 46px;
     font-family: "Amatic Sc";
@@ -79,6 +82,8 @@ const LoginFormStyled = styled.form`
   }
 
   input{
+    border: none;
+    margin-bottom: 18px;
     border-radius: 5px;
     padding: 18px 24px 18px 52px;
     width: 100%;
@@ -91,6 +96,17 @@ const LoginFormStyled = styled.form`
     border-radius: 5px;
     color: ${theme.colors.white};
     background: #FF9F1B;
+
+    &:hover{
+      background: ${theme.colors.white};
+      color: #FF9F1B;
+      cursor: pointer;
+    }
+
+    &:active{
+      color: ${theme.colors.white};
+      background: #FF9F1B;
+    }
   }
 
   .inputAndButton{
@@ -115,6 +131,7 @@ const LoginFormStyled = styled.form`
 
   .icon-person{
     margin-left: 24px;
+    margin-bottom: 20px;
     color: ${theme.colors.greySemiDark};
   }
 `;
