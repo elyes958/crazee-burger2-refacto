@@ -21,4 +21,8 @@ const LoginStyled = styled.div`
   background-repeat: no-repeat;    /* Empêche la répétition de l'image */
   height: 100vh;                   /* Prend toute la hauteur de la fenêtre contrairement à 100% qui prend toute la hauteur du parent */
   width: 100%;                     /* Prend toute la largeur */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
