@@ -33,15 +33,15 @@ export default function LoginForm() {
      <h2>Connectez-vous</h2>
      <div className="inputAndButton">
        <TextInput 
-       value={inputValue}
-       onChange={handleChange} 
-       Icon={<BsPersonCircle className="icon-person"/>}
-       placeholder={"Entrer votre prénom"} 
-       required 
+         value={inputValue}
+         onChange={handleChange} 
+         Icon={<BsPersonCircle className="icon-person"/>}
+         placeholder={"Entrer votre prénom"} 
+         required 
        />
-       <PrimaryButton
-        value={"Accéder à mon espace"}
-        Icon={<IoChevronForward className="icon-chevron"/>}
+       <PrimaryButton 
+         value={"Accéder à mon espace"}
+         Icon={<IoChevronForward className="icon-chevron"/>}
        />
      </div>
     </LoginFormStyled>
@@ -103,8 +103,8 @@ const LoginFormStyled = styled.form`
   }
 
   .icon-chevron{
-    margin-left: 278px;
-    color: ${theme.colors.white};
+    margin-top: 2px;
+    margin-left: 5px;
   }
 
   .icon-person{

@@ -4,8 +4,10 @@ import { theme } from "../../theme";
 export default function PrimaryButton({value, Icon}) {
   return (
     <PrimaryButtonStyled>
-        <button>{value}</button>
-        {Icon && Icon}
+        <button>
+            {value}
+            {Icon && Icon}
+        </button>
     </PrimaryButtonStyled>
   )
 }
