@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import { IoChevronForward } from "react-icons/io5";
 import { BsPersonCircle } from "react-icons/bs";
+import TextInput from "../../reusable-ui/TextInput";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 
 export default function LoginForm() {
@@ -30,14 +32,17 @@ export default function LoginForm() {
      <hr />
      <h2>Connectez-vous</h2>
      <div className="inputAndButton">
-       <div>
-           <input onChange={handleChange} value={inputValue} type="text" placeholder="Entrer votre prénom" required />
-           <BsPersonCircle className="icon-person"/>
-       </div>
-       <div>
-           <button>Accéder à mon espace</button>
-           <IoChevronForward className="icon-chevron"/>
-       </div>
+       <TextInput 
+       value={inputValue}
+       onChange={handleChange} 
+       Icon={<BsPersonCircle className="icon-person"/>}
+       placeholder={"Entrer votre prénom"} 
+       required 
+       />
+       <PrimaryButton
+        value={"Accéder à mon espace"}
+        Icon={<IoChevronForward className="icon-chevron"/>}
+       />
      </div>
     </LoginFormStyled>
   )
@@ -56,7 +61,7 @@ const LoginFormStyled = styled.form`
     margin-top: 72px;
     width: 310px;
     height: 61px;
-    font-family: "Amatic Sc";
+    font-family: "Amatic Sc", cursive;
     font-size: ${theme.fonts.P5};
     font-weight: ${theme.weights.bold};
     line-height: 61px;
@@ -75,38 +80,10 @@ const LoginFormStyled = styled.form`
     margin-bottom: 18px;
     width: 171px;
     height: 46px;
-    font-family: "Amatic Sc";
+    font-family: "Amatic Sc", cursive;
     font-size: ${theme.fonts.P4};
     font-weight: ${theme.weights.bold};
     line-height: 46px;
-  }
-
-  input{
-    border: none;
-    margin-bottom: 18px;
-    border-radius: 5px;
-    padding: 18px 24px 18px 52px;
-    width: 100%;
-  }
-
-  button{
-    width: 400px;
-    height: 53px;
-    border: 1px #FF9F1B;
-    border-radius: 5px;
-    color: ${theme.colors.white};
-    background: #FF9F1B;
-
-    &:hover{
-      background: ${theme.colors.white};
-      color: #FF9F1B;
-      cursor: pointer;
-    }
-
-    &:active{
-      color: ${theme.colors.white};
-      background: #FF9F1B;
-    }
   }
 
   .inputAndButton{
@@ -127,6 +104,7 @@ const LoginFormStyled = styled.form`
 
   .icon-chevron{
     margin-left: 278px;
+    color: ${theme.colors.white};
   }
 
   .icon-person{

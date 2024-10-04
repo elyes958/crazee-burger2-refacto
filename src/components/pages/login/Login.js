@@ -15,7 +15,8 @@ export default function Login() {
 
 
 const LoginStyled = styled.div`
-  background: url("/images/backgroundLoginPage.jpg");
+  background: url("/images/backgroundLoginPage.jpg") rgba(0, 0, 0, 0.7);
+  background-blend-mode: darken;   // cet propriéte + le rgba(juste au dessus) pour avoir l'effet sombre de l'image en background
   background-size: cover;          /* Ajuste l'image pour couvrir tout l'élément */
   background-position: center;     /* Centrer l'image */
   background-repeat: no-repeat;    /* Empêche la répétition de l'image */

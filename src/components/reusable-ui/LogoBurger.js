@@ -21,9 +21,11 @@ const LogoBurgerStyled = styled.div`
     margin: 0;
     color: ${theme.colors.primary};
     font-size: 100px;
-    font-family: "Amatic SC";
+    font-family: "Amatic SC", cursive;
     font-weight: ${theme.weights.bold};
     letter-spacing: 1.5px;
+    line-height: 1em;
+    text-transform: uppercase;
   }
 
   img{
