@@ -18,7 +18,7 @@ const PrimaryButtonStyled = styled.div`
      width: 400px;
      height: 53px;
      border: 1px #FF9F1B;
-     border-radius: 5px;
+     border-radius: ${theme.borderRadius.round};
      color: ${theme.colors.white};
      background: #FF9F1B;
 

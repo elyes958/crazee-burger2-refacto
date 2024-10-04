@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../theme";
 
 export default function TextInput({ value, onChange, Icon, ...restProps }) {
     // console.log(restProps);  // objet qui contient tout le reste des props
@@ -19,5 +20,10 @@ const TextInputStyled = styled.div`
      border-radius: 5px;
      padding: 18px 24px 18px 52px;
      width: 100%;
+
+     &::placeholder{      // c'est comme ça qu'on cible le placeholder
+        background: ${theme.colors.white};
+        color: ${theme.colors.greyLight};
+     }
     }
 `;

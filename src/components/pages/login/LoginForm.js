@@ -72,7 +72,7 @@ const LoginFormStyled = styled.form`
     width: 400px;
     height: 3px;
     border: 1px;
-    background: #F56A2C;
+    background: ${theme.colors.loginLine};
   }
 
   h2{
