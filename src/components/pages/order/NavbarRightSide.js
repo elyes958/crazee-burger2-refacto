@@ -54,6 +54,9 @@ const NavbarRightSideStyled = styled.div`
       line-height: 14px;
       text-align: right;
       color: #747B91;
+      &:hover{
+        text-decoration: underline;
+      }
     }
 
     svg{
