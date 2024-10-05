@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export default function LogoBurger() {
+export default function LogoBurger( {onClick} ) {
   return (
-    <LogoBurgerStyled>
+    <LogoBurgerStyled onClick={onClick}>
       <h1>CRAZEE</h1>
       <img src="/images/burgerLogo.png" alt="logo" /> 
       <h1>BURGER</h1>

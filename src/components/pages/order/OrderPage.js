@@ -18,7 +18,7 @@ export default function OrderPage() {
       <div className="container">
         <nav>
           <div className="left">
-              <LogoBurger/>
+              <LogoBurger onClick={() => window.location.reload()} />
           </div>
           <div className="right">
             <div>
@@ -41,9 +41,12 @@ const OrderPageStyled = styled.div`
   background: ${theme.colors.primary};
   height: 100vh;
   padding: 25px 56px 25px 56px;
+  display: flex;
+  justify-content: center;
 
   .container{
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,7 +54,7 @@ const OrderPageStyled = styled.div`
     nav{
       box-sizing: border-box;
       padding: 0 70px 0 20px;
-      border: 1px solid blue;
+      /* border: 1px solid blue; */
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
       width: 1400px;
@@ -75,6 +78,7 @@ const OrderPageStyled = styled.div`
       font-weight: ${theme.weights.regular};
       line-height: 22px;
       text-align: right;
+      color: #747B91;
 
       span{
         color: ${theme.colors.primary};
@@ -91,6 +95,7 @@ const OrderPageStyled = styled.div`
       font-size: ${theme.fonts.XXS};
       line-height: 14px;
       text-align: right;
+      color: #747B91;
      }
 
       svg{
@@ -103,10 +108,22 @@ const OrderPageStyled = styled.div`
 
     .left{
       cursor: pointer;
+
+      div{
+        h1{
+          font-size: 36px;
+          line-height: 46px;
+        }
+
+        img{
+          width: 80px;
+          height: 60px;
+        }
+      }
     }
 
     main{
-      border: 1px solid green;
+      /* border: 1px solid green; */
       width: 1400px;
       height: 835px;
       background: ${theme.colors.white};
