@@ -2,13 +2,14 @@ import LogoBurger from "../../reusable-ui/LogoBurger";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import NavbarRightSide from "./NavbarRightSide";
+import { refreshPage } from "../../../utils/window";
 
 
 export default function Navbar() {
     return (
         <NavbarStyled>
             <div className="left">
-                <LogoBurger onClick={() => window.location.reload()} />
+                <LogoBurger onClick={refreshPage} />
             </div>
             <NavbarRightSide/>
         </NavbarStyled>
