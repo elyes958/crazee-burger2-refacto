@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 import { useState } from "react";
-import { fakeMenu2 } from "../../../fakeData/fakeMenu";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
-import { formatPrice } from "../../../utils/maths";
+import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import { formatPrice } from "../../../../utils/maths";
 
 export default function Main() {
 
