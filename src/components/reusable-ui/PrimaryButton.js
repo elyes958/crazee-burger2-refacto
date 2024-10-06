@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export default function PrimaryButton({value, Icon}) {
+export default function PrimaryButton({value, Icon, className}) {
   return (
-    <PrimaryButtonStyled>
+    <PrimaryButtonStyled className={className} >
         <button>
             {value}
             {Icon && Icon}
