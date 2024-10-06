@@ -3,6 +3,7 @@ import { theme } from "../../../theme";
 import { useState } from "react";
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import { formatPrice } from "../../../utils/maths";
 
 export default function Main() {
 
@@ -21,7 +22,7 @@ export default function Main() {
           </div>
           <div className="priceAndButton">
             <div className="price">
-              <p>{product.price} €</p>
+              <p>{formatPrice(product.price)}</p>
             </div>
             <PrimaryButton value={"Ajouter"} className={"divbutton"} />
           </div>
@@ -95,6 +96,8 @@ const MainStyled = styled.main`
 
     .price{
       padding: 22px 50px 22px 0px;
+      display: flex;
+      align-items: center;
       
       p{
         margin: 0;
@@ -111,6 +114,11 @@ const MainStyled = styled.main`
       font-family: 'Open Sans', sans-serif;
       font-weight: ${theme.weights.bold};
       line-height: 12px;
+      transition: background-color 0.3s ease; /* Transition douce sur 0.3s */
+
+      &:hover{
+        border: 1px solid ${theme.colors.primary}; // la transition sera appliquer au survol ici
+      }
       }
     }
 `;
