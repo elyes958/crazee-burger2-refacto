@@ -1,8 +1,9 @@
-import LogoBurger from "../../reusable-ui/LogoBurger";
+import LogoBurger from "../../../reusable-ui/LogoBurger";
 import styled from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
+
+import { refreshPage } from "../../../../utils/window";
 import NavbarRightSide from "./NavbarRightSide";
-import { refreshPage } from "../../../utils/window";
 
 
 export default function Navbar() {
