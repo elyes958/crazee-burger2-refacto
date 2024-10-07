@@ -12,7 +12,7 @@ export default function Menu() {
         <MenuStyled>
           {menu.map((product) =>
             <Product
-             id={product.id}
+             key={product.id}
              imageSource={product.imageSource}
              title={product.title}
              price={product.price}

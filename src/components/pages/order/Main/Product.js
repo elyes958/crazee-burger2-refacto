@@ -4,13 +4,13 @@ import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { theme } from "../../../../theme";
 
 
-export default function Product({ id, imageSource, title, price }) {
+export default function Product({ imageSource, title, price }) {
     return (
-        <ProductStyled key={id}>
+        <ProductStyled>
             <img src={imageSource} alt={title} />
             <div className="info">
                 <div className="title">
-                    <p>{title}</p>
+                    <span>{title}</span>
                 </div>
                 <div className="priceAndButton">
                     <div className="price">
@@ -32,9 +32,10 @@ const ProductStyled = styled.div`
     padding: 20px 20px 10px 20px;
 
     img{
-     width: 200px;
-     height: 145px;
-     object-fit: contain;     /* Empêche la déformation de l'image */
+        /* margin-top: 10px; */
+        width: 200px;
+        height: 145px;
+        object-fit: contain;     /* Empêche la déformation de l'image */
     }
 
     .info{
@@ -47,8 +48,11 @@ const ProductStyled = styled.div`
       font-size: ${theme.fonts.P4};
       font-weight: ${theme.weights.bold};
       line-height: 45px;
+      white-space: nowrap;       // evite le decalage quand le texte est trop long et qu'il ce met en desous à la ligne
+      overflow: hidden;          // cache le texte qui depasse du container 
+      text-overflow: ellipsis;   // affiche ... quand le texte du titre est trop long
 
-      p{
+      span{
         margin-top: 15px;
         margin-bottom: 0;
       }
