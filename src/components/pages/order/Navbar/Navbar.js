@@ -4,6 +4,7 @@ import { theme } from "../../../../theme";
 
 import { refreshPage } from "../../../../utils/window";
 import NavbarRightSide from "./NavbarRightSide";
+import ToggleButton from "../../../reusable-ui/ToggleButton";
 
 
 export default function Navbar() {
@@ -12,7 +13,10 @@ export default function Navbar() {
             <div className="left">
                 <LogoBurger onClick={refreshPage} />
             </div>
-            <NavbarRightSide/>
+            <div className="right">
+              <ToggleButton labelIfChecked={"DESACTIVER LE MODE ADMIN"} labelIfUnchecked={"ACTIVER LE MODE ADMIN"} />
+              <NavbarRightSide/>
+            </div>
         </NavbarStyled>
     )
 }
@@ -46,6 +50,10 @@ const NavbarStyled = styled.nav`
           height: 60px;
         }
       }
+    }
+
+    .right{
+      display: flex;
     }
 `;
 
