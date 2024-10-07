@@ -23,6 +23,7 @@ const NavbarStyled = styled.nav`
     /* border: 1px solid blue; */
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    border-bottom: 1px solid ${theme.colors.greyLight};
     width: 1400px;
     height: 98px;
     background: ${theme.colors.white};
