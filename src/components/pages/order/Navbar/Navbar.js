@@ -1,21 +1,50 @@
 import LogoBurger from "../../../reusable-ui/LogoBurger";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-
 import { refreshPage } from "../../../../utils/window";
 import NavbarRightSide from "./NavbarRightSide";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
+import { useState } from "react";
+import { toast } from 'react-toastify';
+import ToastAdmin from "./ToastAdmin";
 
 
 export default function Navbar() {
+  // State
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+
+  // Comportement
+  const notify = () => {
+    if(isModeAdmin){
+      toast.info("Mode admin activé", {
+        // icon: <FaUserSecret size={30} />,
+        theme: "dark",
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
+    
+  }
+
+  // Affichage
     return (
         <NavbarStyled>
             <div className="left">
                 <LogoBurger onClick={refreshPage} />
             </div>
             <div className="right">
-              <ToggleButton labelIfChecked={"DESACTIVER LE MODE ADMIN"} labelIfUnchecked={"ACTIVER LE MODE ADMIN"} />
+              <ToggleButton
+              onToggle={notify} 
+              labelIfChecked={"DESACTIVER LE MODE ADMIN"} 
+              labelIfUnchecked={"ACTIVER LE MODE ADMIN"} 
+              />
               <NavbarRightSide/>
+              <ToastAdmin/>
             </div>
         </NavbarStyled>
     )
