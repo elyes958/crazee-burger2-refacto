@@ -15,7 +15,7 @@ export default function Navbar() {
 
   // Comportement
   const notify = () => {
-    if(isModeAdmin){
+    if(!isModeAdmin){     // cet ligne verifie si(if) isModeAdmin === false
       toast.info("Mode admin activé", {
         // icon: <FaUserSecret size={30} />,
         theme: "dark",
@@ -28,7 +28,7 @@ export default function Navbar() {
         progress: undefined,
       })
     }
-    
+    setIsModeAdmin(!isModeAdmin);     // cet ligne change la valeur de isModeAdmin avec le contraire de la valeur actuel
   }
 
   // Affichage
