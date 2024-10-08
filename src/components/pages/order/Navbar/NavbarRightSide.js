@@ -29,6 +29,7 @@ const NavbarRightSideStyled = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 40px;
 
     h1{
       margin: 0px;
