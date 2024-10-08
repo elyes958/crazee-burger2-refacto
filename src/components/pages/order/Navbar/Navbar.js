@@ -14,7 +14,7 @@ export default function Navbar() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
 
   // Comportement
-  const notify = () => {
+  const displayToastNotification = () => {
     if(!isModeAdmin){     // cet ligne verifie si(if) isModeAdmin === false
       toast.info("Mode admin activé", {
         // icon: <FaUserSecret size={30} />,
@@ -39,7 +39,7 @@ export default function Navbar() {
             </div>
             <div className="right">
               <ToggleButton
-              onToggle={notify} 
+              onToggle={displayToastNotification} 
               labelIfChecked={"DESACTIVER LE MODE ADMIN"} 
               labelIfUnchecked={"ACTIVER LE MODE ADMIN"} 
               />

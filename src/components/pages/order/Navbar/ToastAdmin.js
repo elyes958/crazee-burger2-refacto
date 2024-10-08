@@ -13,6 +13,7 @@ export default function ToastAdmin() {
 
 
 const ToastAdminStyled = styled.div`
+// quand tu inspect le toast qui apparait tu peu voir que toutes ces classe la sont presentes et que on peu modifier le style à l'interieur
   .toaster {
     max-width: 300px;
   }
