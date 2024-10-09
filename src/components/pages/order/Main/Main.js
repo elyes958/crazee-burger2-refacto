@@ -20,6 +20,6 @@ export default function Main() {
 
 const MainStyled = styled.main`
     width: 1400px;
-    height: 835px;
+    height: 750px;
     position: relative;
 `;

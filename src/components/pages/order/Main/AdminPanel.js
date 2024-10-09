@@ -3,17 +3,27 @@ import { FiChevronDown, FiChevronUp  } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { theme } from "../../../../theme";
+import { useState } from "react";
 
 
 export default function AdminPanel() {
+  // State
+  const [displayPanel, setDisplayPanel] = useState(true);
+
+  // Comportement
+  const handleClicked = () => {
+    setDisplayPanel(!displayPanel);
+  }
+
+  // Affichage
   return (
     <AdminPanelStyled>
         <div className="AdminTab">
-            <button className="btnchevron"><FiChevronDown /></button>
+            <button className="btnchevron" onClick={handleClicked} ><FiChevronDown /></button>
             <button className="btnadd"><AiOutlinePlus /><span>Ajouter un produit</span></button>
             <button className="btnedit"><MdModeEditOutline /><span>Modifier un produit</span></button>
         </div>
-        <div className="AdminContent"><span>Ajouter un produit</span></div>
+        {displayPanel && <div className="AdminContent"><span>Ajouter un produit</span></div>}
     </AdminPanelStyled>
   )
 }
@@ -22,7 +32,7 @@ export default function AdminPanel() {
 const AdminPanelStyled = styled.div`
   /* border: 1px solid green; */
   width: 100%;
-  height: 295px;
+  /* height: 295px; ne pas mettre de height ici ça ma provoquer une erreur car quand tu fais disparaitre adminPanel le parent garde la meme hauteur, du coup admin Tab reste en haut et ne descend pas en bas ce qui laisse un espace vide */
   position: absolute;
   bottom: 0;     // Aligne AdminPanel en bas du conteneur Main(sans ça il ce met à la suite de main et depasse du container) 
   z-index: 1;   // Pour s’assurer qu'il se superpose au Menu 
