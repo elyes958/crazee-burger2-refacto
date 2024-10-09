@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import Menu from "./Menu";
 import AdminPanel from "./AdminPanel";
+import { useContext } from "react";
+import AdminContext from "../../../../context/AdminContext";
 
 export default function Main() {
+  // State
+  const {isModeAdmin} = useContext(AdminContext);
 
   // Affichage
   return (
     <MainStyled>
       <Menu/>
-      <AdminPanel/>
+      {isModeAdmin && <AdminPanel/>}
     </MainStyled>
   )
 }
