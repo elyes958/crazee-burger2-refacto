@@ -24,7 +24,7 @@ export default function Menu() {
 
 const MenuStyled = styled.div`
     /* border: 1px solid green; */
-    width: 1400px;
+    width: 100%;
     height: 835px;
     background: ${theme.colors.white};
     border-bottom-right-radius: 15px;
