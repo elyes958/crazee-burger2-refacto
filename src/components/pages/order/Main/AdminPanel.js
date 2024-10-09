@@ -3,16 +3,23 @@ import { FiChevronDown, FiChevronUp  } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { theme } from "../../../../theme";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AdminContext from "../../../../context/AdminContext";
 
 
 export default function AdminPanel() {
   // State
-  const [displayPanel, setDisplayPanel] = useState(true);
+  const { displayPanel, setDisplayPanel, selectTab , setSelectTab } = useContext(AdminContext); // on recupere displayPanel via le context sur le composant parent car quand le composant AdminPanel est demonter au clic quand on quitte le mode Admin  quand on le remonte il ce remet à true du coup il ne concerve pas le state quand on quitte et revient sur le mode admin par contre le composant parent n'est pas demonter et il conserve le state
 
   // Comportement
   const handleClicked = () => {
     setDisplayPanel(!displayPanel);
+  }
+
+  const handleSelected = (id) => {
+    console.log("id : " + id)
+    setSelectTab(id);
+    setDisplayPanel(true);
   }
 
   // Affichage
@@ -20,10 +27,10 @@ export default function AdminPanel() {
     <AdminPanelStyled>
         <div className="AdminTab">
             <button className="btnchevron" onClick={handleClicked} ><FiChevronDown /></button>
-            <button className="btnadd"><AiOutlinePlus /><span>Ajouter un produit</span></button>
-            <button className="btnedit"><MdModeEditOutline /><span>Modifier un produit</span></button>
+            <button id="add" className="btnadd" onClick={() => handleSelected("add")}><AiOutlinePlus /><span>Ajouter un produit</span></button>
+            <button id="edit" className="btnedit" onClick={() => handleSelected("edit")}><MdModeEditOutline /><span>Modifier un produit</span></button>
         </div>
-        {displayPanel && <div className="AdminContent"><span>Ajouter un produit</span></div>}
+        {displayPanel && <div className="AdminContent">{selectTab === "add" ? <span>Ajouter un produit</span> : <span>Modifier un produit</span>}</div>}
     </AdminPanelStyled>
   )
 }
@@ -61,10 +68,11 @@ const AdminPanelStyled = styled.div`
         margin-top: 1px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        background: #292729;
+        /* background: #292729; */
+        background: #FFFFFF;
         cursor: pointer;
-        color: #FFFFFF;
         padding: 10px 22px 11px 22px;
+        border: 1px #E4E5E9;
 
         svg{
             margin-right: 14px;
