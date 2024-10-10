@@ -7,13 +7,13 @@ import ToggleButton from "../../../reusable-ui/ToggleButton";
 import { useContext, useState } from "react";
 import { toast } from 'react-toastify';
 import ToastAdmin from "./ToastAdmin";
-import AdminContext from "../../../../context/AdminContext";
+import OrderContext from "../../../../context/OrderContext";
 
 
 export default function Navbar() {
   // State
   // const [isModeAdmin, setIsModeAdmin] = useState(false);
-  const {isModeAdmin, setIsModeAdmin} = useContext(AdminContext);
+  const {isModeAdmin, setIsModeAdmin} = useContext(OrderContext);
 
   // Comportement
   const displayToastNotification = () => {

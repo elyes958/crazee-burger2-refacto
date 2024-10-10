@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {theme} from "../../../theme";
 import Main from "./Main/Main";
 import Navbar from "./Navbar/Navbar";
-import AdminContext from "../../../context/AdminContext";
+import OrderContext from "../../../context/OrderContext";
 import { useState } from "react";
 
 
@@ -13,7 +13,7 @@ export default function OrderPage() {
   const [selectTab, setSelectTab] = useState("add");
 
 
-  const AdminContextValue = {
+  const orderContextValue = {
     isModeAdmin: isModeAdmin,             // cle et valeur ont le meme nom donc on peu l'ecrire sans preciser la cle sinon il aurais fallu ecrire isModeAdmin: isModeAdmin
     setIsModeAdmin: setIsModeAdmin,
 
@@ -26,14 +26,14 @@ export default function OrderPage() {
 
   // affichage
   return (
+    <OrderContext.Provider value={orderContextValue}>
     <OrderPageStyled>
-      <AdminContext.Provider value={AdminContextValue}>
       <div className="container">
         <Navbar/>
         <Main/>
       </div>
-      </AdminContext.Provider>
     </OrderPageStyled>
+    </OrderContext.Provider>
   )
 }
 

@@ -3,13 +3,13 @@ import { FiChevronDown, FiChevronUp  } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { theme } from "../../../../theme";
-import { useContext, useState } from "react";
-import AdminContext from "../../../../context/AdminContext";
+import { useContext } from "react";
+import OrderContext from "../../../../context/OrderContext";
 
 
 export default function AdminPanel({selectTab}) {
   // State
-  const { displayPanel, setDisplayPanel, setSelectTab } = useContext(AdminContext); // on recupere displayPanel via le context sur le composant parent car quand le composant AdminPanel est demonter au clic quand on quitte le mode Admin  quand on le remonte il ce remet à true du coup il ne concerve pas le state quand on quitte et revient sur le mode admin par contre le composant parent n'est pas demonter et il conserve le state
+  const { displayPanel, setDisplayPanel, setSelectTab } = useContext(OrderContext); // on recupere displayPanel via le context sur le composant parent car quand le composant AdminPanel est demonter au clic quand on quitte le mode Admin  quand on le remonte il ce remet à true du coup il ne concerve pas le state quand on quitte et revient sur le mode admin par contre le composant parent n'est pas demonter et il conserve le state
 
   // Comportement
   const handleClicked = () => {
@@ -42,7 +42,8 @@ const AdminPanelStyled = styled.div`
   /* height: 295px; ne pas mettre de height ici ça ma provoquer une erreur car quand tu fais disparaitre adminPanel le parent garde la meme hauteur, du coup admin Tab reste en haut et ne descend pas en bas ce qui laisse un espace vide */
   position: absolute;
   bottom: 0;     // Aligne AdminPanel en bas du conteneur Main(sans ça il ce met à la suite de main et depasse du container) 
-  z-index: 1;   // Pour s’assurer qu'il se superpose au Menu 
+  z-index: 1;   // Pour s’assurer qu'il se superpose au Menu
+  
 
   .AdminTab{
     /* border: 1px solid red; */
@@ -54,9 +55,9 @@ const AdminPanelStyled = styled.div`
         height: 43px;
         margin-top: 1px;
         margin-left: 71px;
-        border: 1px #E4E5E9;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border: 1px ${theme.colors.greyLight};
+        border-top-left-radius: ${theme.borderRadius.round};
+        border-top-right-radius: ${theme.borderRadius.round};
         background: #FFFFFF;
         cursor: pointer;
         padding: 10px 22px 11px 22px;
@@ -66,13 +67,13 @@ const AdminPanelStyled = styled.div`
         width: 212px;
         height: 43px;
         margin-top: 1px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border-top-left-radius: ${theme.borderRadius.round};
+        border-top-right-radius: ${theme.borderRadius.round};
         background: ${({ selectTab }) => selectTab === "add" ? "#292729" : "#FFFFFF"};
         color: ${({selectTab}) => selectTab === "add" ? "#FFFFFF" : "#292729"};
         cursor: pointer;
         padding: 10px 22px 11px 22px;
-        border: 1px #E4E5E9;
+        border: 1px ${theme.colors.greyLight};
 
         svg{
             margin-right: 14px;
@@ -91,9 +92,9 @@ const AdminPanelStyled = styled.div`
         width: 220px;
         height: 43px;
         margin-top: 1px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        border: 1px #E4E5E9;
+        border-top-left-radius: ${theme.borderRadius.round};
+        border-top-right-radius: ${theme.borderRadius.round};
+        border: 1px ${theme.colors.greyLight};
         cursor: pointer;
         padding: 10px 22px 11px 22px;
         background: ${( props ) => props.selectTab === "edit" ? "#292729" : "#FFFFFF"};
@@ -118,6 +119,10 @@ const AdminPanelStyled = styled.div`
     width: 100%;
     height: 250px;
     background: #FFFFFF;
+    border-bottom-left-radius: ${theme.borderRadius.extraRound};
+    border-bottom-right-radius: ${theme.borderRadius.extraRound};
+    box-shadow: ${theme.shadows.subtle};
+
     span{
         font-size: ${theme.fonts.P0};
         font-weight: ${theme.weights.regular};
