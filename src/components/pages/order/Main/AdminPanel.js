@@ -7,9 +7,9 @@ import { useContext, useState } from "react";
 import AdminContext from "../../../../context/AdminContext";
 
 
-export default function AdminPanel() {
+export default function AdminPanel({selectTab}) {
   // State
-  const { displayPanel, setDisplayPanel, selectTab , setSelectTab } = useContext(AdminContext); // on recupere displayPanel via le context sur le composant parent car quand le composant AdminPanel est demonter au clic quand on quitte le mode Admin  quand on le remonte il ce remet à true du coup il ne concerve pas le state quand on quitte et revient sur le mode admin par contre le composant parent n'est pas demonter et il conserve le state
+  const { displayPanel, setDisplayPanel, setSelectTab } = useContext(AdminContext); // on recupere displayPanel via le context sur le composant parent car quand le composant AdminPanel est demonter au clic quand on quitte le mode Admin  quand on le remonte il ce remet à true du coup il ne concerve pas le state quand on quitte et revient sur le mode admin par contre le composant parent n'est pas demonter et il conserve le state
 
   // Comportement
   const handleClicked = () => {
@@ -24,9 +24,9 @@ export default function AdminPanel() {
 
   // Affichage
   return (
-    <AdminPanelStyled>
+    <AdminPanelStyled selectTab={selectTab}>
         <div className="AdminTab">
-            <button className="btnchevron" onClick={handleClicked} ><FiChevronDown /></button>
+            <button className="btnchevron" onClick={handleClicked} >{displayPanel ? <FiChevronDown /> : <FiChevronUp/> }</button>
             <button id="add" className="btnadd" onClick={() => handleSelected("add")}><AiOutlinePlus /><span>Ajouter un produit</span></button>
             <button id="edit" className="btnedit" onClick={() => handleSelected("edit")}><MdModeEditOutline /><span>Modifier un produit</span></button>
         </div>
@@ -68,8 +68,8 @@ const AdminPanelStyled = styled.div`
         margin-top: 1px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        /* background: #292729; */
-        background: #FFFFFF;
+        background: ${({ selectTab }) => selectTab === "add" ? "#292729" : "#FFFFFF"};
+        color: ${({selectTab}) => selectTab === "add" ? "#FFFFFF" : "#292729"};
         cursor: pointer;
         padding: 10px 22px 11px 22px;
         border: 1px #E4E5E9;
@@ -80,6 +80,10 @@ const AdminPanelStyled = styled.div`
 
         span{
             font-family: 'Open Sans', cursive;
+        }
+
+        &:hover{
+            text-decoration: underline;
         }
     }
 
@@ -92,7 +96,8 @@ const AdminPanelStyled = styled.div`
         border: 1px #E4E5E9;
         cursor: pointer;
         padding: 10px 22px 11px 22px;
-        background: #FFFFFF;
+        background: ${( props ) => props.selectTab === "edit" ? "#292729" : "#FFFFFF"};
+        color: ${(props) => props.selectTab === "edit" ? "#FFFFFF" : "#292729"};
 
         svg{
             margin-right: 14px;
@@ -100,6 +105,10 @@ const AdminPanelStyled = styled.div`
 
         span{
             font-family: 'Open Sans', cursive;
+        }
+
+        &:hover{
+            text-decoration: underline;
         }
     }
   }

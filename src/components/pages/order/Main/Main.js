@@ -6,13 +6,13 @@ import AdminContext from "../../../../context/AdminContext";
 
 export default function Main() {
   // State
-  const {isModeAdmin} = useContext(AdminContext);
+  const {isModeAdmin, selectTab} = useContext(AdminContext);
 
   // Affichage
   return (
     <MainStyled>
       <Menu/>
-      {isModeAdmin && <AdminPanel/>}
+      {isModeAdmin && <AdminPanel selectTab={selectTab} />}
     </MainStyled>
   )
 }
