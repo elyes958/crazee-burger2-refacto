@@ -7,6 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Open Sans", sans-serif;
   /* ligne 8 , nous permet de l'utiliser par defaut et evite de devoir l'ecrire partout, on peu toujour en definir une autre dans le css si besoin */
+  box-sizing: border-box;
+  /* ligne 10: nous permet d'utiliser cet propriete partout sur notre projet  */
 }
 
 code {

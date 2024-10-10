@@ -5,6 +5,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { theme } from "../../../../../theme";
+import Tab from "../../../../reusable-ui/Tab";
 
 
 export default function AdminTab({ selectTab }) {
@@ -28,6 +29,7 @@ export default function AdminTab({ selectTab }) {
     // Affichage
     return (
         <AdminTabStyled selectTab={selectTab} >
+            <Tab Icon={displayPanel ? <FiChevronDown /> : <FiChevronUp />} onClick={handleClicked} className={!displayPanel ? "onglet-select" : ""} />
             <button className="btnchevron" onClick={handleClicked} >{displayPanel ? <FiChevronDown /> : <FiChevronUp />}</button>
             <button id="add" className="btnadd" onClick={() => handleSelected("add")}><AiOutlinePlus /><span>Ajouter un produit</span></button>
             <button id="edit" className="btnedit" onClick={() => handleSelected("edit")}><MdModeEditOutline /><span>Modifier un produit</span></button>
@@ -39,6 +41,12 @@ const AdminTabStyled = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     height: 44px;
+
+    .onglet-select{
+        background: ${theme.colors.background_dark};
+        color: ${theme.colors.white};
+        border-color: ${theme.colors.background_dark};
+    }
 
     .btnchevron{
         width: 60px;
