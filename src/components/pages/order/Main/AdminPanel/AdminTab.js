@@ -8,10 +8,10 @@ import { theme } from "../../../../../theme";
 import Tab from "../../../../reusable-ui/Tab";
 
 
-export default function AdminTab({ selectTab }) {
+export default function AdminTab() {
 
     // State
-    const { displayPanel, setDisplayPanel, setSelectTab } = useContext(OrderContext); // on recupere displayPanel via le context sur le composant parent car quand le composant AdminPanel est demonter au clic quand on quitte le mode Admin  quand on le remonte il ce remet à true du coup il ne concerve pas le state quand on quitte et revient sur le mode admin par contre le composant parent n'est pas demonter et il conserve le state
+    const { displayPanel, setDisplayPanel, selectTab, setSelectTab } = useContext(OrderContext); // on recupere displayPanel via le context sur le composant parent car quand le composant AdminPanel est demonter au clic quand on quitte le mode Admin  quand on le remonte il ce remet à true du coup il ne concerve pas le state quand on quitte et revient sur le mode admin par contre le composant parent n'est pas demonter et il conserve le state
 
 
     // Comportement
@@ -29,10 +29,27 @@ export default function AdminTab({ selectTab }) {
     // Affichage
     return (
         <AdminTabStyled selectTab={selectTab} >
-            <Tab Icon={displayPanel ? <FiChevronDown /> : <FiChevronUp />} onClick={handleClicked} className={!displayPanel ? "onglet-select" : ""} />
-            <button className="btnchevron" onClick={handleClicked} >{displayPanel ? <FiChevronDown /> : <FiChevronUp />}</button>
-            <button id="add" className="btnadd" onClick={() => handleSelected("add")}><AiOutlinePlus /><span>Ajouter un produit</span></button>
-            <button id="edit" className="btnedit" onClick={() => handleSelected("edit")}><MdModeEditOutline /><span>Modifier un produit</span></button>
+            <Tab
+             id={"chevron"}
+             label={""}
+             Icon={displayPanel ? <FiChevronDown /> : <FiChevronUp />}
+             onClick={handleClicked} 
+             className={!displayPanel ? "onglet-select" : ""} 
+             />
+            <Tab
+             id={"add"}
+             label={"Ajouter un produit"}
+             Icon={<AiOutlinePlus />}
+             onClick={() => handleSelected("add")} 
+             className={selectTab === "add" ? "onglet-select" : ""} 
+             />
+            <Tab
+             id={"edit"}
+             label={"Modifier un produit"}
+             Icon={<MdModeEditOutline />}
+             onClick={() => handleSelected("edit")} 
+             className={selectTab === "edit" ? "onglet-select" : ""} 
+            />
         </AdminTabStyled>
     )
 }
@@ -41,6 +58,7 @@ const AdminTabStyled = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     height: 44px;
+    display: flex;
 
     .onglet-select{
         background: ${theme.colors.background_dark};
@@ -48,67 +66,8 @@ const AdminTabStyled = styled.div`
         border-color: ${theme.colors.background_dark};
     }
 
-    .btnchevron{
-        width: 60px;
-        height: 43px;
-        margin-top: 1px;
-        margin-left: 71px;
-        border: 1px ${theme.colors.greyLight};
-        border-top-left-radius: ${theme.borderRadius.round};
-        border-top-right-radius: ${theme.borderRadius.round};
-        background: #FFFFFF;
-        cursor: pointer;
-        padding: 10px 22px 11px 22px;
-    }
-
-    .btnadd{
-        width: 212px;
-        height: 43px;
-        margin-top: 1px;
-        border-top-left-radius: ${theme.borderRadius.round};
-        border-top-right-radius: ${theme.borderRadius.round};
-        background: ${({ selectTab }) => selectTab === "add" ? "#292729" : "#FFFFFF"};
-        color: ${({selectTab}) => selectTab === "add" ? "#FFFFFF" : "#292729"};
-        cursor: pointer;
-        padding: 10px 22px 11px 22px;
-        border: 1px ${theme.colors.greyLight};
-
-        svg{
-            margin-right: 14px;
-        }
-
-        span{
-            font-family: 'Open Sans', cursive;
-        }
-
-        &:hover{
-            text-decoration: underline;
-        }
-    }
-
-    .btnedit{
-        width: 220px;
-        height: 43px;
-        margin-top: 1px;
-        border-top-left-radius: ${theme.borderRadius.round};
-        border-top-right-radius: ${theme.borderRadius.round};
-        border: 1px ${theme.colors.greyLight};
-        cursor: pointer;
-        padding: 10px 22px 11px 22px;
-        background: ${( props ) => props.selectTab === "edit" ? "#292729" : "#FFFFFF"};
-        color: ${(props) => props.selectTab === "edit" ? "#FFFFFF" : "#292729"};
-
-        svg{
-            margin-right: 14px;
-        }
-
-        span{
-            font-family: 'Open Sans', cursive;
-        }
-
-        &:hover{
-            text-decoration: underline;
-        }
+    button{
+        margin-left: 1px;
     }
 `;
 
