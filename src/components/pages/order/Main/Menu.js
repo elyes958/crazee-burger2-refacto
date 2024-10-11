@@ -24,13 +24,13 @@ export default function Menu() {
 
 const MenuStyled = styled.div`
     /* border: 1px solid green; */
-    width: 1400px;
-    height: 835px;
+    width: 100%;
+    height: 750px;
     background: ${theme.colors.white};
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     background: #F5F5F7;
-    box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+    box-shadow:${theme.shadows.strong};
     box-sizing: border-box;
     padding: 50px 92px;
 

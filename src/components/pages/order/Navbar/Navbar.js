@@ -4,14 +4,16 @@ import { theme } from "../../../../theme";
 import { refreshPage } from "../../../../utils/window";
 import NavbarRightSide from "./NavbarRightSide";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from 'react-toastify';
 import ToastAdmin from "./ToastAdmin";
+import OrderContext from "../../../../context/OrderContext";
 
 
 export default function Navbar() {
   // State
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  // const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const {isModeAdmin, setIsModeAdmin} = useContext(OrderContext);
 
   // Comportement
   const displayToastNotification = () => {

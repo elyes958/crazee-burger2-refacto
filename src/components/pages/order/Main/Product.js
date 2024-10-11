@@ -28,7 +28,7 @@ const ProductStyled = styled.div`
     /* border: 1px solid blue; */
     background: ${theme.colors.white};
     border-radius: 15px;
-    box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+    box-shadow: ${theme.shadows.medium};
     padding: 20px 20px 10px 20px;
 
     img{

@@ -2,18 +2,38 @@ import styled from "styled-components";
 import {theme} from "../../../theme";
 import Main from "./Main/Main";
 import Navbar from "./Navbar/Navbar";
+import OrderContext from "../../../context/OrderContext";
+import { useState } from "react";
 
 
 export default function OrderPage() {
+  // State
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [displayPanel, setDisplayPanel] = useState(true);
+  const [selectTab, setSelectTab] = useState("add");
+
+
+  const orderContextValue = {
+    isModeAdmin: isModeAdmin,             // cle et valeur ont le meme nom donc on peu l'ecrire sans preciser la cle sinon il aurais fallu ecrire isModeAdmin: isModeAdmin
+    setIsModeAdmin: setIsModeAdmin,
+
+    displayPanel,
+    setDisplayPanel,
+
+    selectTab,
+    setSelectTab,
+  };
 
   // affichage
   return (
+    <OrderContext.Provider value={orderContextValue}>
     <OrderPageStyled>
       <div className="container">
         <Navbar/>
         <Main/>
       </div>
     </OrderPageStyled>
+    </OrderContext.Provider>
   )
 }
 
