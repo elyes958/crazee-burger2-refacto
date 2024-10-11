@@ -20,36 +20,47 @@ export default function AdminTab() {
     }
 
     const handleSelected = (id) => {
-        console.log("id : " + id)
+        // console.log("id : " + id)
         setSelectTab(id);
         setDisplayPanel(true);
     }
 
+    const tabsConfig = [
+        {
+          id: "chevron",
+          label: "",
+          Icon: displayPanel ? <FiChevronDown /> : <FiChevronUp />,
+          onClick: handleClicked,
+          className: !displayPanel ? "onglet-select" : "",
+        },
+        {
+          id: "add",
+          label: "Ajouter un produit",
+          Icon: <AiOutlinePlus />,
+          onClick: () => handleSelected("add"),
+          className: selectTab === "add" ? "onglet-select" : "",
+        },
+        {
+          id: "edit",
+          label: "Modifier un produit",
+          Icon: <MdModeEditOutline />,
+          onClick: () => handleSelected("edit"),
+          className: selectTab === "edit" ? "onglet-select" : "",
+        },
+    ]
 
     // Affichage
     return (
         <AdminTabStyled >
-            <Tab
-             id={"chevron"}
-             label={""}
-             Icon={displayPanel ? <FiChevronDown /> : <FiChevronUp />}
-             onClick={handleClicked} 
-             className={!displayPanel ? "onglet-select" : ""} 
-             />
-            <Tab
-             id={"add"}
-             label={"Ajouter un produit"}
-             Icon={<AiOutlinePlus />}
-             onClick={() => handleSelected("add")} 
-             className={selectTab === "add" ? "onglet-select" : ""} 
-             />
-            <Tab
-             id={"edit"}
-             label={"Modifier un produit"}
-             Icon={<MdModeEditOutline />}
-             onClick={() => handleSelected("edit")} 
-             className={selectTab === "edit" ? "onglet-select" : ""} 
-            />
+            {tabsConfig.map((tab) => {
+               return <Tab
+               id={tab.id}
+               label={tab.label}
+               Icon={tab.Icon}
+               onClick={tab.onClick} 
+               className={tab.className} 
+               />
+            })}
         </AdminTabStyled>
     )
 }

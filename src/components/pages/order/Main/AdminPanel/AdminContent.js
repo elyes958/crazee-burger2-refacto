@@ -12,7 +12,8 @@ export default function AdminContent() {
   // Affichage  
   return (
     <AdminContentStyled className="AdminContent">
-        {selectTab === "add" ? <span>Ajouter un produit</span> : <span>Modifier un produit</span>}
+        {selectTab === "add" && <span>Ajouter un produit</span> }
+        {selectTab === "edit" && <span>Modifier un produit</span> }
     </AdminContentStyled>
   )
 }
