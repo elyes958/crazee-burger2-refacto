@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { FiChevronDown, FiChevronUp  } from "react-icons/fi";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { theme } from "../../../../../theme";
 import Tab from "../../../../reusable-ui/Tab";
+import { getTabsConfig } from "./tabsConfig";
+
 
 
 export default function AdminTab() {
@@ -25,34 +24,12 @@ export default function AdminTab() {
         setDisplayPanel(true);
     }
 
-    const tabsConfig = [
-        {
-          id: "chevron",
-          label: "",
-          Icon: displayPanel ? <FiChevronDown /> : <FiChevronUp />,
-          onClick: handleClicked,
-          className: !displayPanel ? "onglet-select" : "",
-        },
-        {
-          id: "add",
-          label: "Ajouter un produit",
-          Icon: <AiOutlinePlus />,
-          onClick: () => handleSelected("add"),
-          className: selectTab === "add" ? "onglet-select" : "",
-        },
-        {
-          id: "edit",
-          label: "Modifier un produit",
-          Icon: <MdModeEditOutline />,
-          onClick: () => handleSelected("edit"),
-          className: selectTab === "edit" ? "onglet-select" : "",
-        },
-    ]
+    const tabs = getTabsConfig( displayPanel, handleClicked , selectTab, handleSelected ); // ont met la fct dans une variable pour pouvoir lui passer les parametre et après map dessus
 
     // Affichage
     return (
         <AdminTabStyled >
-            {tabsConfig.map((tab) => {
+            {tabs.map((tab) => {
                return <Tab
                id={tab.id}
                label={tab.label}
