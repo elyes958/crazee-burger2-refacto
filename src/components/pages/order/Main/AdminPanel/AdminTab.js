@@ -31,11 +31,11 @@ export default function AdminTab() {
         <AdminTabStyled >
             {tabs.map((tab) => {
                return <Tab
-               id={tab.id}
+               key={tab.id}
                label={tab.label}
                Icon={tab.Icon}
                onClick={tab.onClick} 
-               className={tab.className} 
+               className={tab.className}
                />
             })}
         </AdminTabStyled>

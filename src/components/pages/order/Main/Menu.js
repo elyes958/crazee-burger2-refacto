@@ -30,7 +30,7 @@ const MenuStyled = styled.div`
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     background: #F5F5F7;
-    box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+    box-shadow:${theme.shadows.strong};
     box-sizing: border-box;
     padding: 50px 92px;
 
