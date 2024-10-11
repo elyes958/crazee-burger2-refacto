@@ -5,14 +5,14 @@ import AdminTab from "./AdminTab";
 import AdminContent from "./AdminContent";
 
 
-export default function AdminPanel({selectTab}) {
+export default function AdminPanel() {
   // State
   const { displayPanel } = useContext(OrderContext); // on recupere displayPanel via le context sur le composant parent car quand le composant AdminPanel est demonter au clic quand on quitte le mode Admin  quand on le remonte il ce remet à true du coup il ne concerve pas le state quand on quitte et revient sur le mode admin par contre le composant parent n'est pas demonter et il conserve le state
 
   // Affichage
   return (
-    <AdminPanelStyled selectTab={selectTab}>
-        <AdminTab selectTab={selectTab} />
+    <AdminPanelStyled>
+        <AdminTab/>
         {displayPanel && <AdminContent/>}
     </AdminPanelStyled>
   )

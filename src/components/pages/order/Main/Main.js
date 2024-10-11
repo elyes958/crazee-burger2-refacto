@@ -6,13 +6,13 @@ import OrderContext from "../../../../context/OrderContext";
 
 export default function Main() {
   // State
-  const {isModeAdmin, selectTab} = useContext(OrderContext);
+  const {isModeAdmin} = useContext(OrderContext);
 
   // Affichage
   return (
     <MainStyled>
       <Menu/>
-      {isModeAdmin && <AdminPanel selectTab={selectTab} />}
+      {isModeAdmin && <AdminPanel/>}
     </MainStyled>
   )
 }

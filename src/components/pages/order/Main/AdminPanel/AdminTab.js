@@ -28,7 +28,7 @@ export default function AdminTab() {
 
     // Affichage
     return (
-        <AdminTabStyled selectTab={selectTab} >
+        <AdminTabStyled >
             <Tab
              id={"chevron"}
              label={""}
