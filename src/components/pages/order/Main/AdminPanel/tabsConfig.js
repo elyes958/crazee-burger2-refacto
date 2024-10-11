@@ -25,3 +25,14 @@ export const getTabsConfig = (displayPanel, handleClicked ,selectTab, handleSele
       className: selectTab === "edit" ? "onglet-select" : "",
     },
 ]
+
+export const getContentConfig = (selectTab) => {
+    switch (selectTab) {
+        case "add":
+            return <span>Ajouter un produit</span>
+        case "edit":
+            return <span>Modifier un produit</span>
+        default:
+            return null;
+    }
+}

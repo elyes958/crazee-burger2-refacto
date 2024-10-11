@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
+import { getContentConfig } from "./tabsConfig";
 
 export default function AdminContent() {
 
@@ -12,8 +13,9 @@ export default function AdminContent() {
   // Affichage  
   return (
     <AdminContentStyled className="AdminContent">
-        {selectTab === "add" && <span>Ajouter un produit</span> }
-        {selectTab === "edit" && <span>Modifier un produit</span> }
+        {/* {selectTab === "add" && <span>Ajouter un produit</span> }
+        {selectTab === "edit" && <span>Modifier un produit</span> } */}
+        {getContentConfig(selectTab)}
     </AdminContentStyled>
   )
 }
