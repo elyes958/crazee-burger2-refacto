@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Product from "./Product";
+import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const [menu, setMenu] = useState(fakeMenu2);
+  const { menu } = useContext(OrderContext);
 
     return (
         <MenuStyled>

@@ -10,4 +10,7 @@ export default createContext({
 
     selectTab: "",
     setSelectTab: () => {},
+
+    menu: [],
+    setMenu: () => {},
 });

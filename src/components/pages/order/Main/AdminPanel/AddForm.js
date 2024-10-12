@@ -3,19 +3,31 @@ import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import { theme } from "../../../../../theme";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import OrderContext from "../../../../../context/OrderContext";
 
 
 export default function AddForm() {
-  
    // State
    const [inputName, setInputName] = useState("");
    const [inputUrl, setInputUrl] = useState("");
    const [inputPrice, setInputPrice] = useState("");
+   const { menu, setMenu } =  useContext(OrderContext);
 
   // Comportements
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
+    const newProduct = {
+        id: Date.now(),
+        imageSource: inputUrl,
+        title: inputName,
+        price: inputPrice,
+    }
+
+    const copy    = [...menu];
+    const newMenu = [newProduct, ...copy];
+    setMenu(newMenu);
   }
 
   const handleChange = (event) => {
@@ -37,7 +49,7 @@ export default function AddForm() {
   // Affichage
   return (
     <AddFormStyled onSubmit={handleSubmit} >
-        <div className="image">{inputUrl ? <img src={inputUrl} alt="img" /> : "Aucune image" }</div>
+        <div className={`image ${inputUrl ? "with-image" : ""}`}>{inputUrl ? <img src={inputUrl} alt="img" /> : "Aucune image" }</div>
         <div className="inputs-andicons">
             <div>
                 <FaHamburger />
@@ -74,6 +86,7 @@ export default function AddForm() {
     </AddFormStyled>
   )
 }
+// ligne 40 dans les class, image est toujours appliquer et si ont a quelque chose dans inputUrl on ajoute la classe with-image
 
 const AddFormStyled = styled.form`
   /* border: 2px solid black; */
@@ -92,6 +105,10 @@ const AddFormStyled = styled.form`
     justify-content: center;
     align-items: center;
     color: ${theme.colors.greySemiDark};
+
+    &.with-image {
+    border: none; /* classe qui Retire la bordure si une image est présente, qu'on a ajouter en plus de classe image sous conditions dans des */
+   }
 
     img{
         object-fit: contain;

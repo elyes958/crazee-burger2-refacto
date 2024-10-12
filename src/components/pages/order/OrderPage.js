@@ -4,6 +4,7 @@ import Main from "./Main/Main";
 import Navbar from "./Navbar/Navbar";
 import OrderContext from "../../../context/OrderContext";
 import { useState } from "react";
+import { fakeMenu2 } from "../../../fakeData/fakeMenu";
 
 
 export default function OrderPage() {
@@ -11,6 +12,7 @@ export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [displayPanel, setDisplayPanel] = useState(true);
   const [selectTab, setSelectTab] = useState("add");
+  const [menu, setMenu] = useState(fakeMenu2);
 
 
   const orderContextValue = {
@@ -22,6 +24,9 @@ export default function OrderPage() {
 
     selectTab,
     setSelectTab,
+
+    menu,
+    setMenu,
   };
 
   // affichage
