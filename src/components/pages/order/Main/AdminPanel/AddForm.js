@@ -3,24 +3,71 @@ import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import { theme } from "../../../../../theme";
+import { useState } from "react";
 
 
 export default function AddForm() {
+  
+   // State
+   const [inputName, setInputName] = useState("");
+   const [inputUrl, setInputUrl] = useState("");
+   const [inputPrice, setInputPrice] = useState("");
+
+  // Comportements
+  const handleSubmit = () => {
+
+  }
+
+  const handleChange = (event) => {
+    console.log("event.target.name :" , event.target.name);
+    console.log("event.target.value :" , event.target.value);
+
+    const name  = event.target.name;
+    const value = event.target.value;
+
+    if(name === "nom") {
+        setInputName(value);
+    } else if (name === "url") {
+        setInputUrl(value);
+    } else if (name === "prix") {
+        setInputPrice(value);
+    }
+  }
+
+  // Affichage
   return (
-    <AddFormStyled>
-        <div className="image">Aucune image</div>
+    <AddFormStyled onSubmit={handleSubmit} >
+        <div className="image">{inputUrl ? <img src={inputUrl} alt="img" /> : "Aucune image" }</div>
         <div className="inputs-andicons">
             <div>
                 <FaHamburger />
-                <input type="text" placeholder="Nom du produit (ex: Super Burger)" />
+                <input 
+                 onChange={handleChange}
+                 value={inputName}
+                 type="text"
+                 name="nom"
+                 id=""
+                 placeholder="Nom du produit (ex: Super Burger)" />
             </div>
             <div>
                 <BsFillCameraFill />
-                <input type="text" placeholder="Lien URL d'une image (ex: http://la-photo-de-mon-produit.png)"/>
+                <input 
+                 onChange={handleChange}
+                 value={inputUrl}
+                 type="url"
+                 name="url"
+                 id=""
+                 placeholder="Lien URL d'une image (ex: http://la-photo-de-mon-produit.png)" />
             </div>
             <div>
                 <MdOutlineEuro />
-                <input type="text" placeholder="Prix" />
+                <input 
+                 onChange={handleChange}
+                 value={inputPrice}
+                 type="number"
+                 name="prix"
+                 id=""
+                 placeholder="Prix" />
             </div>
         </div>
         <button className="add-btn">Ajouter un nouveau produit au menu</button>
@@ -45,6 +92,10 @@ const AddFormStyled = styled.form`
     justify-content: center;
     align-items: center;
     color: ${theme.colors.greySemiDark};
+
+    img{
+        object-fit: contain;
+    }
  }
 
  .inputs-andicons{
