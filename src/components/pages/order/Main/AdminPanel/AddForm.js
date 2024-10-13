@@ -5,7 +5,7 @@ import { MdOutlineEuro } from "react-icons/md";
 import { theme } from "../../../../../theme";
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../context/OrderContext";
-
+import { FiCheckCircle } from "react-icons/fi";
 
 export default function AddForm() {
    // State
@@ -13,6 +13,7 @@ export default function AddForm() {
    const [inputUrl, setInputUrl] = useState("");
    const [inputPrice, setInputPrice] = useState("");
    const { menu, setMenu } =  useContext(OrderContext);
+   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   // Comportements
   const handleSubmit =  (event) => {
@@ -37,6 +38,8 @@ export default function AddForm() {
     setInputName("");
     setInputUrl("");
     setInputPrice("");
+
+    success();
   }
 
 
@@ -54,6 +57,15 @@ export default function AddForm() {
     } else if (name === "prix") {
         setInputPrice(value);
     }
+  }
+
+  function success() {
+    setShowSuccessMessage(true);
+
+    setTimeout(() => {
+      setShowSuccessMessage(false);  
+    }, 3000);
+
   }
 
   // Affichage
@@ -92,7 +104,10 @@ export default function AddForm() {
                  placeholder="Prix" />
             </div>
         </div>
-        <button className="add-btn">Ajouter un nouveau produit au menu</button>
+        <div className="btn-and-success">
+            <button className={`add-btn ${showSuccessMessage && "success"}`}>Ajouter un nouveau produit au menu</button>
+            {showSuccessMessage && <div className="succes-message" ><FiCheckCircle />Ajouté avec succès !</div>}
+        </div>
     </AddFormStyled>
   )
 }
@@ -156,10 +171,16 @@ const AddFormStyled = styled.form`
     }
  }
 
+ .btn-and-success{
+    width: 645px;
+    display: flex;
+    margin-left: 235px;
+ }
+
  .add-btn{
     height: 34px;
     width: 275px;
-    margin-left: 235px;
+    /* margin-left: 235px; */
     margin-top: 12px;
     border-radius: ${theme.borderRadius.round};
     border: 1px;
@@ -167,5 +188,25 @@ const AddFormStyled = styled.form`
     background: ${theme.colors.success};
     color: ${theme.colors.white};
     cursor: pointer;
+
+    &.success {
+        background: ${theme.colors.white};
+        color: ${theme.colors.success};
+    }
+ }
+
+ .succes-message{
+    padding: 0px 2px 0px 10px;
+    gap: 5px;
+    font-family: "Open Sans", cursive;
+    font-weight: ${theme.weights.regular};
+    font-size: ${theme.fonts.SM};
+    line-height: 20px;
+    color: ${theme.colors.success};
+    margin-top: 20px;
+
+    svg{
+        margin-right: 5px;
+    }
  }
 `;
