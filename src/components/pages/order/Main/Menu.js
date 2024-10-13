@@ -13,6 +13,7 @@ export default function Menu() {
           {menu.map((product) =>
             <Product
              key={product.id}
+             id={product.id}
              imageSource={product.imageSource}
              title={product.title}
              price={product.price}

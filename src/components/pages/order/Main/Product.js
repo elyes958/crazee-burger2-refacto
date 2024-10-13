@@ -2,11 +2,27 @@ import styled from "styled-components";
 import { formatPrice } from "../../../../utils/maths";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { theme } from "../../../../theme";
+import { TiDelete } from "react-icons/ti";
+import { useContext } from "react";
+import OrderContext from "../../../../context/OrderContext";
 
 
-export default function Product({ imageSource, title, price }) {
+export default function Product({ imageSource, title, price, id }) {
+  // State
+  const { isModeAdmin, menu, setMenu } = useContext(OrderContext);
+
+
+  // Comportements
+  const handleClicked = (id) => {
+    const copy    = [...menu];
+    const newMenu = copy.filter((product) => product.id !== id );
+    setMenu(newMenu);
+  }
+
+    // Affichage
     return (
         <ProductStyled>
+            {isModeAdmin && <TiDelete onClick={() => handleClicked(id)} className="TiDelete" />}
             <img src={imageSource} alt={title} />
             <div className="info">
                 <div className="title">
@@ -30,6 +46,20 @@ const ProductStyled = styled.div`
     border-radius: 15px;
     box-shadow: ${theme.shadows.medium};
     padding: 20px 20px 10px 20px;
+    position: relative;
+
+    .TiDelete{
+      position: absolute;   // evite le decalage de la carte lié à l'apparition du delete dedans comme il fait 30 de height et de widht cela decaler la carte en le mettant en postion absolute il n'y a plus ce probleme
+      margin-left: 175px;
+      width: 30px;
+      height: 30px;
+      color: ${theme.colors.primary};
+
+      &:hover{
+        cursor: pointer;
+        color: ${theme.colors.red};
+      }
+    }
 
     img{
         /* margin-top: 10px; */

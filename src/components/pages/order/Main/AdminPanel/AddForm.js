@@ -15,12 +15,17 @@ export default function AddForm() {
    const { menu, setMenu } =  useContext(OrderContext);
 
   // Comportements
-  const handleSubmit = (event) => {
+  const handleSubmit =  (event) => {
     event.preventDefault();
+
+    if(inputUrl === ""){
+        setInputUrl("/images/coming-soon.png");
+    }
+    console.log("inputUrl :" + inputUrl);
 
     const newProduct = {
         id: Date.now(),
-        imageSource: inputUrl,
+        imageSource: inputUrl || "/images/coming-soon.png",    // si inputUrl n'est pas vide tu l'affiche sinon tu affiche l'image
         title: inputName,
         price: inputPrice,
     }
@@ -28,7 +33,12 @@ export default function AddForm() {
     const copy    = [...menu];
     const newMenu = [newProduct, ...copy];
     setMenu(newMenu);
+
+    setInputName("");
+    setInputUrl("");
+    setInputPrice("");
   }
+
 
   const handleChange = (event) => {
     console.log("event.target.name :" , event.target.name);
