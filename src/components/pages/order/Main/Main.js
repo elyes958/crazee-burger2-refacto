@@ -3,15 +3,16 @@ import Menu from "./Menu";
 import AdminPanel from "./AdminPanel/AdminPanel";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
+import EmptyMenu from "./EmptyMenu";
 
 export default function Main() {
   // State
-  const {isModeAdmin} = useContext(OrderContext);
+  const {isModeAdmin, menu} = useContext(OrderContext);
 
   // Affichage
   return (
     <MainStyled>
-      <Menu/>
+      {menu.length > 0 ? <Menu/> : <EmptyMenu isModeAdmin={isModeAdmin} />}
       {isModeAdmin && <AdminPanel/>}
     </MainStyled>
   )

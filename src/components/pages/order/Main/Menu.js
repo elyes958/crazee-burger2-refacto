@@ -8,9 +8,10 @@ export default function Menu() {
   // State
   const { menu } = useContext(OrderContext);
 
+  // Affichage
     return (
         <MenuStyled>
-          {menu.map((product) =>
+        {menu.map((product) =>
             <Product
              key={product.id}
              id={product.id}
@@ -18,7 +19,8 @@ export default function Menu() {
              title={product.title}
              price={product.price}
             />
-        )}
+        ) 
+        }
         </MenuStyled>
     )
 }
@@ -42,5 +44,4 @@ const MenuStyled = styled.div`
     grid-column-gap: 85px;
     overflow: hidden;      // on cache tout ce qui depasse du container
     overflow-y: scroll;    // et avec cet propriete les card passe sous la navBar et  celle qui depasser tu container devienne visible au scroll et inclus dans le container */
-
 `;
