@@ -12,7 +12,7 @@ export default function AddForm() {
    const [inputName, setInputName] = useState("");
    const [inputUrl, setInputUrl] = useState("");
    const [inputPrice, setInputPrice] = useState("");
-   const { menu, setMenu } =  useContext(OrderContext);
+   const { handleAddProduct } =  useContext(OrderContext);
    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   // Comportements
@@ -26,9 +26,7 @@ export default function AddForm() {
         price: inputPrice,
     }
 
-    const copy    = [...menu];
-    const newMenu = [newProduct, ...copy];
-    setMenu(newMenu);
+    handleAddProduct(newProduct);
 
     setInputName("");
     setInputUrl("");

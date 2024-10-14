@@ -14,6 +14,16 @@ export default function OrderPage() {
   const [selectTab, setSelectTab] = useState("add");
   const [menu, setMenu] = useState(fakeMenu2);
 
+  
+
+  // Comportement
+  const handleAddProduct = (newProduct) => { 
+
+    const copy    = [...menu];
+    const newMenu = [newProduct, ...copy];
+    setMenu(newMenu);     // bonne pratique on modifie le state toujour proche de la ou il est défini
+
+  }
 
   const orderContextValue = {
     isModeAdmin: isModeAdmin,             // cle et valeur ont le meme nom donc on peu l'ecrire sans preciser la cle sinon il aurais fallu ecrire isModeAdmin: isModeAdmin
@@ -27,6 +37,8 @@ export default function OrderPage() {
 
     menu,
     setMenu,
+
+    handleAddProduct,
   };
 
   // affichage
