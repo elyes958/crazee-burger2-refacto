@@ -6,7 +6,7 @@ import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const { menu } = useContext(OrderContext);
+  const { menu, handleDeleteCard, isModeAdmin } = useContext(OrderContext);
 
   // Affichage
     return (
@@ -18,6 +18,8 @@ export default function Menu() {
              imageSource={product.imageSource}
              title={product.title}
              price={product.price}
+             onDelete={() => handleDeleteCard(product.id)}
+             isModeAdmin={isModeAdmin}
             />
         ) 
         }

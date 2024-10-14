@@ -3,26 +3,14 @@ import { formatPrice } from "../../../../utils/maths";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { theme } from "../../../../theme";
 import { TiDelete } from "react-icons/ti";
-import { useContext } from "react";
-import OrderContext from "../../../../context/OrderContext";
 
 
-export default function Product({ imageSource, title, price, id }) {
-  // State
-  const { isModeAdmin, menu, setMenu } = useContext(OrderContext);
-
-
-  // Comportements
-  const handleClicked = (id) => {
-    const copy    = [...menu];
-    const newMenu = copy.filter((product) => product.id !== id );
-    setMenu(newMenu);
-  }
+export default function Product({ imageSource, title, price, onDelete, isModeAdmin }) {
 
     // Affichage
     return (
         <ProductStyled>
-            {isModeAdmin && <TiDelete onClick={() => handleClicked(id)} className="TiDelete" />}
+            {isModeAdmin && <TiDelete onClick={onDelete} className="TiDelete" />}
             <img src={imageSource} alt={title} />
             <div className="info">
                 <div className="title">

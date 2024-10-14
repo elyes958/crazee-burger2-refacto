@@ -25,6 +25,12 @@ export default function OrderPage() {
 
   }
 
+  const handleDeleteCard = (id) => { 
+    const copy    = [...menu];
+    const newMenu = copy.filter((product) => product.id !== id );
+    setMenu(newMenu);
+  }
+
   const orderContextValue = {
     isModeAdmin: isModeAdmin,             // cle et valeur ont le meme nom donc on peu l'ecrire sans preciser la cle sinon il aurais fallu ecrire isModeAdmin: isModeAdmin
     setIsModeAdmin: setIsModeAdmin,
@@ -39,6 +45,7 @@ export default function OrderPage() {
     setMenu,
 
     handleAddProduct,
+    handleDeleteCard,
   };
 
   // affichage

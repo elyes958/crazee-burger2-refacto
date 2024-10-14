@@ -49,16 +49,15 @@ export default function AddForm() {
 
     setNewProduct({...newProduct, [name] : value});
   }
+  
 
-
-  function success() {
+  const success = () => { 
     setShowSuccessMessage(true);
 
     setTimeout(() => {
       setShowSuccessMessage(false);  
-    }, 3000);
-
-  }
+    }, 2000);
+ }
 
   // Affichage
   return (
@@ -129,6 +128,7 @@ const AddFormStyled = styled.form`
 
     img{
         object-fit: contain;
+        object-position: center;
     }
  }
 
