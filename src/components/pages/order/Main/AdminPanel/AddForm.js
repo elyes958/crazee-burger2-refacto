@@ -9,9 +9,11 @@ import { FiCheckCircle } from "react-icons/fi";
 
 export default function AddForm() {
    // State
-   const [inputName, setInputName] = useState("");
-   const [inputUrl, setInputUrl] = useState("");
-   const [inputPrice, setInputPrice] = useState("");
+   const [newProduct, setNewProduct] = useState({
+    nom: "",
+    url:  "",
+    prix:  "",
+   });
    const { handleAddProduct } =  useContext(OrderContext);
    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -19,38 +21,35 @@ export default function AddForm() {
   const handleSubmit =  (event) => {
     event.preventDefault();
 
-    const newProduct = {
+    const newProductToAdd = {
         id: Date.now(),
-        imageSource: inputUrl || "/images/coming-soon.png",    // si inputUrl n'est pas vide tu l'affiche sinon tu affiche l'image
-        title: inputName,
-        price: inputPrice,
+        imageSource: newProduct.url || "/images/coming-soon.png",    // si inputUrl n'est pas vide tu l'affiche sinon tu affiche l'image
+        title: newProduct.nom,
+        price: newProduct.prix,
     }
 
-    handleAddProduct(newProduct);
+    handleAddProduct(newProductToAdd);
 
-    setInputName("");
-    setInputUrl("");
-    setInputPrice("");
+    setNewProduct({
+        nom: "",
+        url:  "",
+        prix:  "",
+    })
 
     success();
   }
 
 
   const handleChange = (event) => {
-    console.log("event.target.name :" , event.target.name);
-    console.log("event.target.value :" , event.target.value);
+    // console.log("event.target.name :" , event.target.name);
+    // console.log("event.target.value :" , event.target.value);
 
     const name  = event.target.name;
     const value = event.target.value;
 
-    if(name === "nom") {
-        setInputName(value);
-    } else if (name === "url") {
-        setInputUrl(value);
-    } else if (name === "prix") {
-        setInputPrice(value);
-    }
+    setNewProduct({...newProduct, [name] : value});
   }
+
 
   function success() {
     setShowSuccessMessage(true);
@@ -64,13 +63,13 @@ export default function AddForm() {
   // Affichage
   return (
     <AddFormStyled onSubmit={handleSubmit} >
-        <div className={`image ${inputUrl ? "with-image" : ""}`}>{inputUrl ? <img src={inputUrl} alt="img" /> : "Aucune image" }</div>
+        <div className={`image ${newProduct.url ? "with-image" : ""}`}>{newProduct.url ? <img src={newProduct.url} alt="img" /> : "Aucune image" }</div>
         <div className="inputs-andicons">
             <div>
                 <FaHamburger />
                 <input 
                  onChange={handleChange}
-                 value={inputName}
+                 value={newProduct.nom}
                  type="text"
                  name="nom"
                  id=""
@@ -80,7 +79,7 @@ export default function AddForm() {
                 <BsFillCameraFill />
                 <input 
                  onChange={handleChange}
-                 value={inputUrl}
+                 value={newProduct.url}
                  type="url"
                  name="url"
                  id=""
@@ -90,7 +89,7 @@ export default function AddForm() {
                 <MdOutlineEuro />
                 <input 
                  onChange={handleChange}
-                 value={inputPrice}
+                 value={newProduct.prix}
                  type="number"
                  name="prix"
                  id=""
