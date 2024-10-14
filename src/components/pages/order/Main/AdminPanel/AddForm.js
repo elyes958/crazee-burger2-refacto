@@ -19,11 +19,6 @@ export default function AddForm() {
   const handleSubmit =  (event) => {
     event.preventDefault();
 
-    if(inputUrl === ""){
-        setInputUrl("/images/coming-soon.png");
-    }
-    console.log("inputUrl :" + inputUrl);
-
     const newProduct = {
         id: Date.now(),
         imageSource: inputUrl || "/images/coming-soon.png",    // si inputUrl n'est pas vide tu l'affiche sinon tu affiche l'image
@@ -173,14 +168,12 @@ const AddFormStyled = styled.form`
 
  .btn-and-success{
     width: 645px;
-    display: flex;
     margin-left: 235px;
+    display: flex;
  }
 
  .add-btn{
     height: 34px;
-    width: 275px;
-    /* margin-left: 235px; */
     margin-top: 12px;
     border-radius: ${theme.borderRadius.round};
     border: 1px;
@@ -192,6 +185,7 @@ const AddFormStyled = styled.form`
     &.success {
         background: ${theme.colors.white};
         color: ${theme.colors.success};
+        border: 1px solid ${theme.colors.success};
     }
  }
 
