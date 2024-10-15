@@ -1,29 +1,17 @@
 import styled from 'styled-components';
-import { refreshPage } from '../../../../utils/window';
 import { theme } from '../../../../theme';
+import EmptyMenuAdmin from './EmptyMenuAdmin';
+import EmptyMenuClient from './EmptyMenuClient';
 
-export default function EmptyMenu({ isModeAdmin }) {
-
-   // Comportements
-  const handleClicked = () => {
-    refreshPage();
-  } 
+export default function EmptyMenu({ isModeAdmin, handleResetMenu }) {
 
   // Affichage  
   return (
     <EmptyMenuStyled>
         {isModeAdmin ? 
-        <div className="emptyMenuAdmin">
-            <p>LE MENU EST VIDE ?</p>
-            <p>CLIQUEZ CI-DESSOUS POUR LE RENITIALISER</p>
-            <button onClick={handleClicked} >Générer de nouveaux produits</button>
-        </div>
+        <EmptyMenuAdmin handleResetMenu={() => handleResetMenu()} />
         :
-        <div className="emptyMenuClient">
-            <p>VICTIME DE NOTRE SUCCES ! :D</p>
-            <p>DE NOUVELLES RECETTES SONT EN COURS DE PREPARATION</p>
-            <p>A TRES VITE !</p>
-        </div>
+        <EmptyMenuClient/>
         }
     </EmptyMenuStyled>
   )
@@ -43,39 +31,4 @@ const EmptyMenuStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-  .emptyMenuAdmin{
-    font-family: "Amatic SC";
-    font-weight: ${theme.weights.bold};
-    font-size: ${theme.fonts.P4};
-    line-height: 45px;
-    text-align: center;
-    color: ${theme.colors.greyBlue};
-
-    p{
-        margin: 31px 0 31px 0;
-    }
-
-    button{
-      border: 1px;
-      border-radius: ${theme.borderRadius.round};
-      padding: 19px 24px 19px 25px;
-      background: ${theme.colors.primary};
-      color: ${theme.colors.white};
-      cursor: pointer;
-    }
-   }
-
-   .emptyMenuClient{
-    font-family: "Amatic SC";
-    font-weight: ${theme.weights.bold};
-    font-size: ${theme.fonts.P4};
-    line-height: 45px;
-    text-align: center;
-    color: ${theme.colors.greyBlue};
-
-    p{
-        margin: 31px 0 31px 0;
-    }
-   }
 `;

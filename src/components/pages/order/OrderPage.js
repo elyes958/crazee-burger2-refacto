@@ -31,6 +31,10 @@ export default function OrderPage() {
     setMenu(newMenu);
   }
 
+  const handleResetMenu = () => { 
+    setMenu(fakeMenu2);
+  }
+
   const orderContextValue = {
     isModeAdmin: isModeAdmin,             // cle et valeur ont le meme nom donc on peu l'ecrire sans preciser la cle sinon il aurais fallu ecrire isModeAdmin: isModeAdmin
     setIsModeAdmin: setIsModeAdmin,
@@ -46,6 +50,7 @@ export default function OrderPage() {
 
     handleAddProduct,
     handleDeleteCard,
+    handleResetMenu,
   };
 
   // affichage

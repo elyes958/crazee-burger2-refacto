@@ -7,12 +7,12 @@ import EmptyMenu from "./EmptyMenu";
 
 export default function Main() {
   // State
-  const {isModeAdmin, menu} = useContext(OrderContext);
+  const {isModeAdmin, menu, handleResetMenu} = useContext(OrderContext);
 
   // Affichage
   return (
     <MainStyled>
-      {menu.length > 0 ? <Menu/> : <EmptyMenu isModeAdmin={isModeAdmin} />}
+      {menu.length > 0 ? <Menu/> : <EmptyMenu isModeAdmin={isModeAdmin} handleResetMenu={handleResetMenu} />}
       {isModeAdmin && <AdminPanel/>}
     </MainStyled>
   )
