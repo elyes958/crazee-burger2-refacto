@@ -20,10 +20,15 @@ const TextInputStyled = styled.div`
      width: 100%;
     }
 
-    ${(props) => (props.version === "normal" && extraNormalStyle)};
-    ${(props) => (props.version === "minimalist" && extraMinimalistStyle)};
+    /* ${(props) => (props.version === "normal" && extraNormalStyle)};
+    ${(props) => (props.version === "minimalist" && extraMinimalistStyle)}; */
+
+    //refacto en utilisant le dictionnaire
+    ${(props) => extraStyle[props.version]}
 
 `;
+//ligne 25: pour pouvoir recuperer une props dans style-components il faut la passer au niveau du composant stylise comme ici ligne 7 
+
 
 // et ici dans les variable le style qui differe
 const extraNormalStyle = css`
@@ -50,3 +55,10 @@ const extraMinimalistStyle = css`
         }
     }
 `
+
+// notion de "dictionnaire" utiliser en entreprise
+// le definir après les const extraNormalStyle et extraMinimalistStyle sinon erreur
+const extraStyle = {
+    normal: extraNormalStyle,
+    minimalist: extraMinimalistStyle,
+}
