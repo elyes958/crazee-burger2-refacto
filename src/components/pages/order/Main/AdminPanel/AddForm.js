@@ -6,6 +6,7 @@ import { theme } from "../../../../../theme";
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { FiCheckCircle } from "react-icons/fi";
+import TextInput from "../../../../reusable-ui/TextInput";
 
 export default function AddForm() {
    // State
@@ -49,7 +50,7 @@ export default function AddForm() {
 
     setNewProduct({...newProduct, [name] : value});
   }
-  
+
 
   const success = () => { 
     setShowSuccessMessage(true);
@@ -64,36 +65,33 @@ export default function AddForm() {
     <AddFormStyled onSubmit={handleSubmit} >
         <div className={`image ${newProduct.url ? "with-image" : ""}`}>{newProduct.url ? <img src={newProduct.url} alt="img" /> : "Aucune image" }</div>
         <div className="inputs-andicons">
-            <div>
-                <FaHamburger />
-                <input 
-                 onChange={handleChange}
-                 value={newProduct.nom}
-                 type="text"
-                 name="nom"
-                 id=""
-                 placeholder="Nom du produit (ex: Super Burger)" />
-            </div>
-            <div>
-                <BsFillCameraFill />
-                <input 
-                 onChange={handleChange}
-                 value={newProduct.url}
-                 type="url"
-                 name="url"
-                 id=""
-                 placeholder="Lien URL d'une image (ex: http://la-photo-de-mon-produit.png)" />
-            </div>
-            <div>
-                <MdOutlineEuro />
-                <input 
-                 onChange={handleChange}
-                 value={newProduct.prix}
-                 type="number"
-                 name="prix"
-                 id=""
-                 placeholder="Prix" />
-            </div>
+            <TextInput
+                Icon={<FaHamburger />}
+                onChange={handleChange}
+                value={newProduct.nom}
+                type={"text"}
+                name={"nom"}
+                placeholder={"Nom du produit (ex: Super Burger)"}
+                version={"minimalist"}
+            />
+            <TextInput
+                Icon={<BsFillCameraFill />}
+                onChange={handleChange}
+                value={newProduct.url}
+                type={"url"}
+                name={"url"}
+                placeholder={"Lien URL d'une image (ex: http://la-photo-de-mon-produit.png)"}
+                version={"minimalist"}
+            />
+            <TextInput
+                Icon={<MdOutlineEuro />}
+                onChange={handleChange}
+                value={newProduct.prix}
+                type={"number"}
+                name={"prix"}
+                placeholder={"Prix"}
+                version={"minimalist"}
+            />
         </div>
         <div className="btn-and-success">
             <button className={`add-btn ${showSuccessMessage && "success"}`}>Ajouter un nouveau produit au menu</button>
@@ -146,20 +144,6 @@ const AddFormStyled = styled.form`
         border-radius: ${theme.borderRadius.round};
         background: ${theme.colors.background_white};
         color: ${theme.colors.greySemiDark};
-        
-
-        input{
-            width: 100%;
-            padding: 1px 2px 1px 2px;
-            margin-left: 13px;
-            border: none;   // avec ces 3 propriete tu enleve les bordure de l'input la noir au focus et la blanche qui reste après
-            outline: none;
-            background-color: transparent;
-
-            &::placeholder{
-                background: ${theme.colors.background_white};
-            }
-        }
     }
  }
 
