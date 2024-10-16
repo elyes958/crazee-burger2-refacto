@@ -5,10 +5,10 @@ import { MdOutlineEuro } from "react-icons/md";
 import { theme } from "../../../../../theme";
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../context/OrderContext";
-import { FiCheckCircle } from "react-icons/fi";
 import TextInput from "../../../../reusable-ui/TextInput";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
 import Image from "./Image";
+import SubmitMessage from "./SubmitMessage";
 
 
 export default function AddForm() {
@@ -94,7 +94,7 @@ export default function AddForm() {
         </div>
         <div className="btn-and-success">
             <PrimaryButton isSuccess={showSuccessMessage} className={`${showSuccessMessage && "successStyle"}`} version={"success"} value={"Ajouter un nouveau produit au menu"} />
-            {showSuccessMessage && <div className="succes-message" ><FiCheckCircle />Ajouté avec succès !</div>}
+            <SubmitMessage showSuccessMessage={showSuccessMessage} />
         </div>
     </AddFormStyled>
   )
@@ -136,20 +136,5 @@ const AddFormStyled = styled.form`
     width: 645px;
     margin-left: 235px;
     display: flex;
- }
-
- .succes-message{
-    padding: 0px 2px 0px 10px;
-    gap: 5px;
-    font-family: "Open Sans", cursive;
-    font-weight: ${theme.weights.regular};
-    font-size: ${theme.fonts.SM};
-    line-height: 20px;
-    color: ${theme.colors.success};
-    margin-top: 20px;
-
-    svg{
-        margin-right: 5px;
-    }
  }
 `;
