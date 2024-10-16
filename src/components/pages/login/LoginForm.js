@@ -43,6 +43,7 @@ export default function LoginForm() {
        <PrimaryButton 
          value={"Accéder à mon espace"}
          Icon={<IoChevronForward className="icon-chevron"/>}
+         version={"normal"}
        />
      </div>
     </LoginFormStyled>

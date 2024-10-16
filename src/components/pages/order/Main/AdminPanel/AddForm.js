@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { FiCheckCircle } from "react-icons/fi";
 import TextInput from "../../../../reusable-ui/TextInput";
+import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
 
 export default function AddForm() {
    // State
@@ -94,13 +95,14 @@ export default function AddForm() {
             />
         </div>
         <div className="btn-and-success">
-            <button className={`add-btn ${showSuccessMessage && "success"}`}>Ajouter un nouveau produit au menu</button>
+            <PrimaryButton isSuccess={showSuccessMessage} className={`${showSuccessMessage && "successStyle"}`} version={"success"} value={"Ajouter un nouveau produit au menu"} />
             {showSuccessMessage && <div className="succes-message" ><FiCheckCircle />Ajouté avec succès !</div>}
         </div>
     </AddFormStyled>
   )
 }
 // ligne 40 dans les class, image est toujours appliquer et si ont a quelque chose dans inputUrl on ajoute la classe with-image
+// ligne 98 je garde la className avec showSuccessMessage juste pour me rappeler comment ont ajoute une class sous condition mais maintenat qu'on a refacto en utilisant le composant reutilisable et qu'on lui passse le state en props cet class ne sert plus à rien
 
 const AddFormStyled = styled.form`
   /* border: 2px solid black; */
@@ -151,23 +153,6 @@ const AddFormStyled = styled.form`
     width: 645px;
     margin-left: 235px;
     display: flex;
- }
-
- .add-btn{
-    height: 34px;
-    margin-top: 12px;
-    border-radius: ${theme.borderRadius.round};
-    border: 1px;
-    padding: 10px 29px 9px 29px;
-    background: ${theme.colors.success};
-    color: ${theme.colors.white};
-    cursor: pointer;
-
-    &.success {
-        background: ${theme.colors.white};
-        color: ${theme.colors.success};
-        border: 1px solid ${theme.colors.success};
-    }
  }
 
  .succes-message{
