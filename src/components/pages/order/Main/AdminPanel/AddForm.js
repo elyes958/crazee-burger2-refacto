@@ -8,6 +8,8 @@ import OrderContext from "../../../../../context/OrderContext";
 import { FiCheckCircle } from "react-icons/fi";
 import TextInput from "../../../../reusable-ui/TextInput";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
+import Image from "./Image";
+
 
 export default function AddForm() {
    // State
@@ -60,7 +62,7 @@ export default function AddForm() {
   // Affichage
   return (
     <AddFormStyled onSubmit={handleSubmit} >
-        <div className={`image ${newProduct.url ? "with-image" : ""}`}>{newProduct.url ? <img src={newProduct.url} alt="img" /> : "Aucune image" }</div>
+        <Image image={newProduct.url} /> 
         <div className="inputs-andicons">
             <TextInput
                 Icon={<FaHamburger />}
@@ -111,22 +113,7 @@ const AddFormStyled = styled.form`
   margin-top: 31px;
   margin-left: 71px;
 
- .image{
-    border: 1px solid ${theme.colors.greyLight};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ${theme.colors.greySemiDark};
-
-    &.with-image {
-    border: none; /* classe qui Retire la bordure si une image est présente, qu'on a ajouter en plus de classe image sous conditions dans des */
-   }
-
-    img{
-        object-fit: contain;
-        object-position: center;
-    }
- }
+ 
 
  .inputs-andicons{
     /* border: 1px solid blue; */
