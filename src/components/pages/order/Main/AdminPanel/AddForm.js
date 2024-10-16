@@ -11,11 +11,7 @@ import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
 
 export default function AddForm() {
    // State
-   const [newProduct, setNewProduct] = useState({
-    nom: "",
-    url:  "",
-    prix:  "",
-   });
+   const { newProduct, setNewProduct } = useContext(OrderContext);
    const { handleAddProduct } =  useContext(OrderContext);
    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
