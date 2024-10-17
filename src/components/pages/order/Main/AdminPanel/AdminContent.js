@@ -29,12 +29,4 @@ const AdminContentStyled = styled.div`
     border-bottom-left-radius: ${theme.borderRadius.extraRound};
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
     box-shadow: ${theme.shadows.subtle};
-
-    span{
-        font-size: ${theme.fonts.P0};
-        font-weight: ${theme.weights.regular};
-        line-height: 21px;
-        margin-top: 17px;
-        margin-left: 21px;
-    }
 `;
