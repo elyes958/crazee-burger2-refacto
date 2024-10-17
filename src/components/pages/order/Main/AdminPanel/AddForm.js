@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 import { theme } from "../../../../../theme";
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../context/OrderContext";
@@ -9,6 +6,7 @@ import TextInput from "../../../../reusable-ui/TextInput";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
 import Image from "./Image";
 import SubmitMessage from "./SubmitMessage";
+import { getInputTextsConfig } from "./InputTextConfig";
 
 
 export default function AddForm() {
@@ -59,38 +57,26 @@ export default function AddForm() {
     }, 2000);
  }
 
+ const inputTexts = getInputTextsConfig(handleChange, newProduct);
+
   // Affichage
   return (
     <AddFormStyled onSubmit={handleSubmit} >
         <Image image={newProduct.url} /> 
         <div className="inputs-andicons">
-            <TextInput
-                Icon={<FaHamburger />}
-                onChange={handleChange}
-                value={newProduct.nom}
-                type={"text"}
-                name={"nom"}
-                placeholder={"Nom du produit (ex: Super Burger)"}
-                version={"minimalist"}
-            />
-            <TextInput
-                Icon={<BsFillCameraFill />}
-                onChange={handleChange}
-                value={newProduct.url}
-                type={"url"}
-                name={"url"}
-                placeholder={"Lien URL d'une image (ex: http://la-photo-de-mon-produit.png)"}
-                version={"minimalist"}
-            />
-            <TextInput
-                Icon={<MdOutlineEuro />}
-                onChange={handleChange}
-                value={newProduct.prix}
-                type={"number"}
-                name={"prix"}
-                placeholder={"Prix"}
-                version={"minimalist"}
-            />
+            {inputTexts.map((input) =>
+                <TextInput
+                  key={input.id}
+                  id={input.id}
+                  Icon={input.Icon}
+                  onChange={input.onChange}
+                  value={input.value}
+                  type={input.type}
+                  name={input.name}
+                  placeholder={input.placeholder}
+                  version={input.version}
+                />
+            )}
         </div>
         <div className="btn-and-success">
             <PrimaryButton isSuccess={showSuccessMessage} className={`${showSuccessMessage && "successStyle"}`} version={"success"} value={"Ajouter un nouveau produit au menu"} />
