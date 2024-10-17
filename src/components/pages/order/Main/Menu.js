@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Product from "./Product";
@@ -6,7 +6,16 @@ import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const { menu, handleDeleteCard, isModeAdmin } = useContext(OrderContext);
+  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab } = useContext(OrderContext);
+  const [productIsSelected, setProductIsSelected] = useState("");
+
+  // Comportements
+  const handleSelectedCard = (id) => {
+    // console.log("id: " + id);
+    setProductIsSelected(id);
+    setDisplayPanel(true);
+    setSelectTab("edit");
+  }
 
   // Affichage
     return (
@@ -20,6 +29,8 @@ export default function Menu() {
              price={product.price}
              onDelete={() => handleDeleteCard(product.id)}
              isModeAdmin={isModeAdmin}
+             onSelected={() => handleSelectedCard(product.id)}
+             productSelected={productIsSelected}
             />
         ) 
         }

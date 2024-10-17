@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { formatPrice } from "../../../../utils/maths";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { theme } from "../../../../theme";
 import { TiDelete } from "react-icons/ti";
 
 
-export default function Product({ imageSource, title, price, onDelete, isModeAdmin }) {
+export default function Product({ imageSource, title, price, onDelete, isModeAdmin, onSelected, productSelected, id }) {
 
     // Affichage
     return (
-        <ProductStyled>
+        <ProductStyled isModeAdmin={isModeAdmin} onClick={onSelected} productSelected={productSelected} id={id} >
             {isModeAdmin && <TiDelete onClick={onDelete} className="TiDelete" />}
             <img src={imageSource} alt={title} />
             <div className="info">
@@ -35,6 +35,9 @@ const ProductStyled = styled.div`
     box-shadow: ${theme.shadows.medium};
     padding: 20px 20px 10px 20px;
     position: relative;
+
+    ${(props) => props.isModeAdmin && isModeAdminStyle}
+    ${(props) => props.isModeAdmin && props.productSelected === props.id ? isSelectedStyle : ""}
 
     .TiDelete{
       position: absolute;   // evite le decalage de la carte lié à l'apparition du delete dedans comme il fait 30 de height et de widht cela decaler la carte en le mettant en postion absolute il n'y a plus ce probleme
@@ -112,3 +115,33 @@ const ProductStyled = styled.div`
       }
     }
 `;
+
+const isModeAdminStyle = css`
+  &:hover{
+    border: 1px solid #FF9A23;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+`
+
+const isSelectedStyle = css`
+  background: #FF9A23;
+
+  button{
+    background: ${theme.colors.white};
+    color: ${theme.colors.primary};
+    transition: background-color 0.3s ease;
+
+    &:hover{
+        color: ${theme.colors.white};
+        background: ${theme.colors.primary}; 
+        border: 1px solid ${theme.colors.white};
+    }
+  }
+
+  .price{
+    color: ${theme.colors.white};
+  }
+`
+
+
