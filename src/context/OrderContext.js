@@ -10,4 +10,13 @@ export default createContext({
 
     selectTab: "",
     setSelectTab: () => {},
+
+    menu: [],
+
+    handleAddProduct: () => {},
+    handleDeleteCard: () => {},
+    handleResetMenu: () => {},
+
+    newProduct: {},
+    setNewProduct:() => {},
 });

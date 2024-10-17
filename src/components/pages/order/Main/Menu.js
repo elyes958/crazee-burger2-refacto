@@ -1,23 +1,28 @@
-import { useState } from "react";
-import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Product from "./Product";
+import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const [menu, setMenu] = useState(fakeMenu2);
+  const { menu, handleDeleteCard, isModeAdmin } = useContext(OrderContext);
 
+  // Affichage
     return (
         <MenuStyled>
-          {menu.map((product) =>
+        {menu.map((product) =>
             <Product
              key={product.id}
+             id={product.id}
              imageSource={product.imageSource}
              title={product.title}
              price={product.price}
+             onDelete={() => handleDeleteCard(product.id)}
+             isModeAdmin={isModeAdmin}
             />
-        )}
+        ) 
+        }
         </MenuStyled>
     )
 }
@@ -41,5 +46,4 @@ const MenuStyled = styled.div`
     grid-column-gap: 85px;
     overflow: hidden;      // on cache tout ce qui depasse du container
     overflow-y: scroll;    // et avec cet propriete les card passe sous la navBar et  celle qui depasser tu container devienne visible au scroll et inclus dans le container */
-
 `;
