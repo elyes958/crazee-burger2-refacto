@@ -21,17 +21,17 @@ export default function AddForm() {
 
     const newProductToAdd = {
         id: Date.now(),
-        imageSource: newProduct.url || "/images/coming-soon.png",    // si inputUrl n'est pas vide tu l'affiche sinon tu affiche l'image
-        title: newProduct.nom,
-        price: newProduct.prix,
+        title: newProduct.title,
+        imageSource: newProduct.imageSource || "/images/coming-soon.png",    // si imageSource n'est pas vide tu l'affiche sinon tu affiche l'image
+        price: newProduct.price,
     }
 
     handleAddProduct(newProductToAdd);
 
     setNewProduct({
-        nom: "",
-        url:  "",
-        prix:  "",
+        title: "",
+        imageSource:  "",
+        price:  "",
     })
 
     success();
@@ -62,7 +62,7 @@ export default function AddForm() {
   // Affichage
   return (
     <AddFormStyled onSubmit={handleSubmit} >
-        <Image image={newProduct.url} /> 
+        <Image image={newProduct.imageSource} /> 
         <div className="inputs-andicons">
             {inputTexts.map((input) =>
                 <TextInput
@@ -85,7 +85,7 @@ export default function AddForm() {
     </AddFormStyled>
   )
 }
-// ligne 40 dans les class, image est toujours appliquer et si ont a quelque chose dans inputUrl on ajoute la classe with-image
+// ligne 40 dans les class, image est toujours appliquer et si ont a quelque chose dans inputimageSource on ajoute la classe with-image
 // ligne 98 je garde la className avec showSuccessMessage juste pour me rappeler comment ont ajoute une class sous condition mais maintenat qu'on a refacto en utilisant le composant reutilisable et qu'on lui passse le state en props cet class ne sert plus à rien
 
 const AddFormStyled = styled.form`

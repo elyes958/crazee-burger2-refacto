@@ -127,15 +127,28 @@ const isModeAdminStyle = css`
 const isSelectedStyle = css`
   background: #FF9A23;
 
+  .TiDelete{
+    ${theme.colors.white};
+
+    &:active{
+      ${theme.colors.white};
+    }
+  }
+
   button{
     background: ${theme.colors.white};
     color: ${theme.colors.primary};
     transition: background-color 0.3s ease;
 
     &:hover{
+        border: 1px solid #FFFFFF;
         color: ${theme.colors.white};
         background: ${theme.colors.primary}; 
-        border: 1px solid ${theme.colors.white};
+    }
+
+    &:active{
+      background: ${theme.colors.white};
+      color: ${theme.colors.primary};
     }
   }
 

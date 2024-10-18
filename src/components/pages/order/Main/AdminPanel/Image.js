@@ -25,5 +25,6 @@ const ImageStyled = styled.div`
     img{
         object-fit: contain;
         object-position: center;
+        transform: scale(0.7);  // je reduit un peu la taille de l'image(inferieur à 1 reduit et superieur à 1 augmente)
     }
 `;

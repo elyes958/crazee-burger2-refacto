@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Product from "./Product";
@@ -6,8 +6,7 @@ import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab } = useContext(OrderContext);
-  const [productIsSelected, setProductIsSelected] = useState("");
+  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected } = useContext(OrderContext);
 
   // Comportements
   const handleSelectedCard = (id) => {

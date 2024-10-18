@@ -14,10 +14,11 @@ export default function OrderPage() {
   const [selectTab, setSelectTab] = useState("add");
   const [menu, setMenu] = useState(fakeMenu2);
   const [newProduct, setNewProduct] = useState({   // on le remonte ici plutot que dans addForm pour eviter le bug quand on entre des valeur dans le form et qu'on collapse avant de soumettre
-    nom: "",
-    url:  "",
-    prix:  "",
+    title: "",
+    imageSource:  "",
+    price:  "",
    });
+   const [productIsSelected, setProductIsSelected] = useState("");
   
 
   // Comportement
@@ -58,6 +59,9 @@ export default function OrderPage() {
 
     newProduct,
     setNewProduct,
+
+    productIsSelected,
+    setProductIsSelected,
   };
 
   // affichage
