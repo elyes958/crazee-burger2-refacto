@@ -7,7 +7,7 @@ import { getContentConfig } from "./tabsConfig";
 export default function AdminContent() {
 
   // State
-  const { selectTab } = useContext(OrderContext); 
+  const { selectTab, productIsSelected } = useContext(OrderContext); 
 
 
   // Affichage  
@@ -15,7 +15,7 @@ export default function AdminContent() {
     <AdminContentStyled className="AdminContent">
         {/* {selectTab === "add" && <span>Ajouter un produit</span> }
         {selectTab === "edit" && <span>Modifier un produit</span> } */}
-        {getContentConfig(selectTab)}
+        {getContentConfig(selectTab, productIsSelected)}
     </AdminContentStyled>
   )
 }
