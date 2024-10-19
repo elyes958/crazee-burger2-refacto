@@ -23,8 +23,9 @@ const ImageStyled = styled.div`
    }
 
     img{
+        max-width: 100%;  /* L'image ne dépasse pas la largeur du conteneur */
+        max-height: 100%; /* L'image ne dépasse pas la hauteur du conteneur */
         object-fit: contain;
         object-position: center;
-        transform: scale(0.7);  // je reduit un peu la taille de l'image(inferieur à 1 reduit et superieur à 1 augmente)
     }
 `;

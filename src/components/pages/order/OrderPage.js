@@ -40,6 +40,13 @@ export default function OrderPage() {
     setMenu(fakeMenu2);
   }
 
+  const handleEditProduct = (productToEdit) => { 
+    const copy = [...menu];
+    const indexProductInMenu = copy.findIndex((product) => product.id === productToEdit.id);
+    copy[indexProductInMenu] = productToEdit;
+    setMenu(copy);
+  }
+
   const orderContextValue = {
     isModeAdmin: isModeAdmin,             // cle et valeur ont le meme nom donc on peu l'ecrire sans preciser la cle sinon il aurais fallu ecrire isModeAdmin: isModeAdmin
     setIsModeAdmin: setIsModeAdmin,
@@ -62,6 +69,8 @@ export default function OrderPage() {
 
     productIsSelected,
     setProductIsSelected,
+
+    handleEditProduct,
   };
 
   // affichage

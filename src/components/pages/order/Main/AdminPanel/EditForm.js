@@ -10,9 +10,19 @@ import { MdOutlineEuro } from "react-icons/md";
 
 export default function EditForm() {
   // State
-  const {productIsSelected, menu} = useContext(OrderContext);
+  const {productIsSelected, menu, handleEditProduct} = useContext(OrderContext);
 
+  // Comportements
   const productToEdit = menu.find((product) => product.id === productIsSelected);
+
+  const handleEditForm = (event) => { 
+    const name = event.target.name;
+    const value = event.target.value;
+
+    productToEdit[name] = value;
+
+    handleEditProduct(productToEdit);
+ }
 
   // Affichage
   return (
@@ -22,7 +32,7 @@ export default function EditForm() {
         <TextInput
             id={"0"} 
             Icon={<FaHamburger />} 
-            // onChange={handleChange} 
+            onChange={handleEditForm} 
             value={productToEdit.title} 
             type={"text"} 
             name={"title"} 
@@ -32,7 +42,7 @@ export default function EditForm() {
         <TextInput
             id={"1"} 
             Icon={<BsFillCameraFill />} 
-            // onChange={handleChange} 
+            onChange={handleEditForm} 
             value={productToEdit.imageSource} 
             type={"url"} 
             name={"imageSource"} 
@@ -42,7 +52,7 @@ export default function EditForm() {
         <TextInput
             id={"2"} 
             Icon={<MdOutlineEuro />} 
-            // onChange={handleChange} 
+            onChange={handleEditForm} 
             value={productToEdit.price} 
             type={"number"} 
             name={"price"} 
@@ -50,6 +60,7 @@ export default function EditForm() {
             version={"minimalist" } 
         />
         </div>
+        <span>Cliquer sur un produit du menu pour le modifier en temps réel</span>
     </EditFormStyled>
   )
 }
@@ -79,4 +90,14 @@ const EditFormStyled = styled.form`
         color: ${theme.colors.greySemiDark};
     }
  }
+
+    span{
+        font-size: ${theme.fonts.SM};
+        font-weight: ${theme.weights.regular};
+        font-family: "Open Sans", cursive;
+        line-height: 20px;
+        color: #FFA01B;
+        grid-area: 2 / 2 / 3 / 3;  // ma permis de le placer ou je voulais dans la grille
+        margin-top: 15px;
+    }
 `;
