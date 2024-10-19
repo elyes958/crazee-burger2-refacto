@@ -3,7 +3,7 @@ import {theme} from "../../../theme";
 import Main from "./Main/Main";
 import Navbar from "./Navbar/Navbar";
 import OrderContext from "../../../context/OrderContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
 
 
@@ -19,7 +19,8 @@ export default function OrderPage() {
     price:  "",
    });
    const [productIsSelected, setProductIsSelected] = useState("");
-  
+   const inputComponentRef = useRef();
+
 
   // Comportement
   const handleAddProduct = (newProduct) => { 
@@ -71,6 +72,8 @@ export default function OrderPage() {
     setProductIsSelected,
 
     handleEditProduct,
+    
+    inputComponentRef,
   };
 
   // affichage

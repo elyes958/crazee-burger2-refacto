@@ -10,7 +10,7 @@ import { MdOutlineEuro } from "react-icons/md";
 
 export default function EditForm() {
   // State
-  const {productIsSelected, menu, handleEditProduct} = useContext(OrderContext);
+  const {productIsSelected, menu, handleEditProduct, inputComponentRef} = useContext(OrderContext);
 
   // Comportements
   const productToEdit = menu.find((product) => product.id === productIsSelected);
@@ -27,7 +27,7 @@ export default function EditForm() {
   // Affichage
   return (
     <EditFormStyled>
-        <Image image={productToEdit.imageSource}/>
+        {productToEdit.imageSource === "/images/coming-soon.png" ? <Image image={""} /> : <Image image={productToEdit.imageSource}/>}
         <div className="inputs-andicons">
         <TextInput
             id={"0"} 
@@ -37,13 +37,14 @@ export default function EditForm() {
             type={"text"} 
             name={"title"} 
             placeholder={"Nom du produit (ex= Super Burger)"} 
-            version={"minimalist" } 
+            version={"minimalist" }
+            ref={inputComponentRef} 
         />
         <TextInput
             id={"1"} 
             Icon={<BsFillCameraFill />} 
             onChange={handleEditForm} 
-            value={productToEdit.imageSource} 
+            value={productToEdit.imageSource === "/images/coming-soon.png" ? "" : productToEdit.imageSource} 
             type={"url"} 
             name={"imageSource"} 
             placeholder={"Lien URL d'une image (ex: http://la-photo-de-mon-produit.png)"} 
