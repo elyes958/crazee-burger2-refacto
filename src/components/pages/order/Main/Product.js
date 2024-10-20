@@ -9,7 +9,7 @@ export default function Product({ imageSource, title, price, onDelete, isModeAdm
 
     // Affichage
     return (
-        <ProductStyled isModeAdmin={isModeAdmin} onClick={onSelected} productSelected={productSelected} id={id} >
+        <ProductStyled isModeAdmin={isModeAdmin} onClick={isModeAdmin ? onSelected : null} productSelected={productSelected} id={id} >
             {isModeAdmin && <TiDelete onClick={onDelete} className="TiDelete" />}
             <img src={imageSource} alt={title} />
             <div className="info">
@@ -128,10 +128,16 @@ const isSelectedStyle = css`
   background: #FF9A23;
 
   .TiDelete{
-    color: ${theme.colors.white};
+    color: ${theme.colors.white} !important;  // important force ces styles a prendre le dessus car je ne sais pas pourquoi il ne voulais pas s'appliquer
+
+    &:hover{
+        color: ${theme.colors.red} !important;
+      }
+
     &:active{
-     color: ${theme.colors.white};
+     color: ${theme.colors.white} !important;
     }
+
   }
 
   button{
@@ -140,7 +146,7 @@ const isSelectedStyle = css`
     transition: background-color 0.3s ease;
 
     &:hover{
-        border: 1px solid white;
+        border: 1px solid white !important;
         color: ${theme.colors.white};
         background: ${theme.colors.primary}; 
     }
