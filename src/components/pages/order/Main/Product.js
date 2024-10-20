@@ -128,10 +128,9 @@ const isSelectedStyle = css`
   background: #FF9A23;
 
   .TiDelete{
-    ${theme.colors.white};
-
+    color: ${theme.colors.white};
     &:active{
-      ${theme.colors.white};
+     color: ${theme.colors.white};
     }
   }
 
@@ -141,7 +140,7 @@ const isSelectedStyle = css`
     transition: background-color 0.3s ease;
 
     &:hover{
-        border: 1px solid #FFFFFF;
+        border: 1px solid white;
         color: ${theme.colors.white};
         background: ${theme.colors.primary}; 
     }

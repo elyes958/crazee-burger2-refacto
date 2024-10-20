@@ -17,6 +17,16 @@ export default function Menu() {
     inputComponentRef.current.focus();
   }
 
+  const handleDelete = (event, id) => { 
+    event.stopPropagation();
+
+    if(productIsSelected === id){
+      setProductIsSelected("");
+    }
+
+    handleDeleteCard(id);
+  }
+
   // Affichage
     return (
         <MenuStyled>
@@ -27,7 +37,7 @@ export default function Menu() {
              imageSource={product.imageSource}
              title={product.title}
              price={product.price}
-             onDelete={() => handleDeleteCard(product.id)}
+             onDelete={(event) => handleDelete(event, product.id)}
              isModeAdmin={isModeAdmin}
              onSelected={() => handleSelectedCard(product.id)}
              productSelected={productIsSelected}
