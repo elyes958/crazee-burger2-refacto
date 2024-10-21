@@ -5,6 +5,7 @@ import Navbar from "./Navbar/Navbar";
 import OrderContext from "../../../context/OrderContext";
 import { useRef, useState } from "react";
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
+import { deepClone } from "../../../utils/array";
 
 
 export default function OrderPage() {
@@ -25,14 +26,14 @@ export default function OrderPage() {
   // Comportement
   const handleAddProduct = (newProduct) => { 
 
-    const copy = JSON.parse(JSON.stringify(menu));  
+    const copy = deepClone(menu);  
     const newMenu = [newProduct, ...copy];
     setMenu(newMenu);     // bonne pratique on modifie le state toujour proche de la ou il est défini
 
   }
 
   const handleDeleteCard = (id) => { 
-    const copy = JSON.parse(JSON.stringify(menu));  
+    const copy = deepClone(menu);  
     const newMenu = copy.filter((product) => product.id !== id );
     setMenu(newMenu);
   }
@@ -42,7 +43,7 @@ export default function OrderPage() {
   }
 
   const handleEditProduct = (productToEdit) => { 
-    const copy = JSON.parse(JSON.stringify(menu));  // la on a une copy en deepClone(en profondeur, voir explication)
+    const copy = deepClone(menu);  // la on a une copy en deepClone(en profondeur, voir explication)
     const indexProductInMenu = copy.findIndex((product) => product.id === productToEdit.id);
     copy[indexProductInMenu] = productToEdit;
     setMenu(copy);
