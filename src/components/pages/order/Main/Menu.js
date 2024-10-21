@@ -9,11 +9,15 @@ export default function Menu() {
   const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef } = useContext(OrderContext);
 
   // Comportements
-  const handleSelectedCard = async (id) => {
+  const handleSelectedCard = async (event, id) => {
+    event.stopPropagation();
+
     // console.log("id: " + id);
+
     await setProductIsSelected(id);
     await setDisplayPanel(true);
     await setSelectTab("edit");
+
     inputComponentRef.current.focus();
   }
 
@@ -39,7 +43,7 @@ export default function Menu() {
              price={product.price}
              onDelete={(event) => handleDelete(event, product.id)}
              isModeAdmin={isModeAdmin}
-             onSelected={() => handleSelectedCard(product.id)}
+             onSelected={(event) => handleSelectedCard(event, product.id)}
              productSelected={productIsSelected}
             />
         ) 

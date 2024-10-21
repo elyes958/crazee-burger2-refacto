@@ -25,14 +25,14 @@ export default function OrderPage() {
   // Comportement
   const handleAddProduct = (newProduct) => { 
 
-    const copy    = [...menu];
+    const copy = JSON.parse(JSON.stringify(menu));  
     const newMenu = [newProduct, ...copy];
     setMenu(newMenu);     // bonne pratique on modifie le state toujour proche de la ou il est défini
 
   }
 
   const handleDeleteCard = (id) => { 
-    const copy    = [...menu];
+    const copy = JSON.parse(JSON.stringify(menu));  
     const newMenu = copy.filter((product) => product.id !== id );
     setMenu(newMenu);
   }
@@ -42,7 +42,7 @@ export default function OrderPage() {
   }
 
   const handleEditProduct = (productToEdit) => { 
-    const copy = [...menu];
+    const copy = JSON.parse(JSON.stringify(menu));  // la on a une copy en deepClone(en profondeur, voir explication)
     const indexProductInMenu = copy.findIndex((product) => product.id === productToEdit.id);
     copy[indexProductInMenu] = productToEdit;
     setMenu(copy);
