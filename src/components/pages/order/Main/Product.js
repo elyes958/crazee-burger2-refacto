@@ -31,7 +31,7 @@ export default function Product({ imageSource, title, price, onDelete, isModeAdm
 const ProductStyled = styled.div`
     /* border: 1px solid blue; */
     background: ${theme.colors.white};
-    border-radius: 15px;
+    border-radius: ${theme.borderRadius.extraRound};
     box-shadow: ${theme.shadows.medium};
     padding: 20px 20px 10px 20px;
     position: relative;
@@ -118,9 +118,11 @@ const ProductStyled = styled.div`
 
 const isModeAdminStyle = css`
   &:hover{
-    border: 1px solid #FF9A23;
+    /* border: 1px solid #FF9A23; */
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.05);
+    transition: ease-out 0.4s;
+    box-shadow: ${theme.shadows.orangeHighLight};
   }
 `
 

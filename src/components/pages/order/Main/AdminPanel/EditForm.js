@@ -12,7 +12,7 @@ export default function EditForm() {
   // State
   const {productIsSelected, menu, handleEditProduct, inputComponentRef} = useContext(OrderContext);
 
-  // Comportements
+  // Comportements (gestionnaires d'événement ou "event handlers")
   const productToEdit = menu.find((product) => product.id === productIsSelected);
 
   const handleEditForm = (event) => { 

@@ -23,7 +23,7 @@ export default function OrderPage() {
    const inputComponentRef = useRef();
 
 
-  // Comportement
+  // Comportement (gestionnaire de state ou "state handlers")
   const handleAddProduct = (newProduct) => { 
 
     const copy = deepClone(menu);  
