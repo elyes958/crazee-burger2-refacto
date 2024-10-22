@@ -29,6 +29,8 @@ export default function Menu() {
     }
 
     handleDeleteCard(id);
+    
+    inputComponentRef.current.focus(); // corrige le bug quand on supprime une card on perdais le focus
   }
 
   // Affichage
