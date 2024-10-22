@@ -7,6 +7,7 @@ import { FaHamburger } from "react-icons/fa";
 import { theme } from "../../../../../theme";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
+import EditFormInfoMesssage from "./EditFormInfoMesssage";
 
 export default function EditForm() {
   // State
@@ -61,7 +62,7 @@ export default function EditForm() {
             version={"minimalist" } 
         />
         </div>
-        <span>Cliquer sur un produit du menu pour le modifier en temps réel</span>
+        <EditFormInfoMesssage />
     </EditFormStyled>
   )
 }
@@ -91,14 +92,4 @@ const EditFormStyled = styled.form`
         color: ${theme.colors.greySemiDark};
     }
  }
-
-    span{
-        font-size: ${theme.fonts.SM};
-        font-weight: ${theme.weights.regular};
-        font-family: "Open Sans", cursive;
-        line-height: 20px;
-        color: #FFA01B;
-        grid-area: 2 / 2 / 3 / 3;  // ma permis de le placer ou je voulais dans la grille
-        margin-top: 15px;
-    }
 `;
