@@ -20,7 +20,7 @@ export default function Product({ imageSource, title, price, onDelete, isModeAdm
                     <div className="price">
                         <p>{formatPrice(price)}</p>
                     </div>
-                    <PrimaryButton value={"Ajouter"} className={"divbutton"} />
+                    <PrimaryButton value={"Ajouter"} className={"divbutton"} onClick={(event) => event.stopPropagation()} />
                 </div>
             </div>
         </ProductStyled>
