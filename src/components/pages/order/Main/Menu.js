@@ -67,8 +67,8 @@ const MenuStyled = styled.div`
     padding: 50px 92px;
 
     display: grid;     // initialiser grid
-    grid-template-columns:repeat(4, 240px);
-    grid-template-rows: repeat(4, 330px);
+    grid-template-columns:repeat(3, 240px);
+    grid-template-rows: repeat(3, 330px);
     grid-row-gap: 60px;
     grid-column-gap: 85px;
     overflow: hidden;      // on cache tout ce qui depasse du container
