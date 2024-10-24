@@ -3,8 +3,9 @@ import {theme} from "../../../theme";
 import Main from "./Main/Main";
 import Navbar from "./Navbar/Navbar";
 import OrderContext from "../../../context/OrderContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
+import { deepClone } from "../../../utils/array";
 
 
 export default function OrderPage() {
@@ -14,29 +15,38 @@ export default function OrderPage() {
   const [selectTab, setSelectTab] = useState("add");
   const [menu, setMenu] = useState(fakeMenu2);
   const [newProduct, setNewProduct] = useState({   // on le remonte ici plutot que dans addForm pour eviter le bug quand on entre des valeur dans le form et qu'on collapse avant de soumettre
-    nom: "",
-    url:  "",
-    prix:  "",
+    title: "",
+    imageSource:  "",
+    price:  "",
    });
-  
+   const [productIsSelected, setProductIsSelected] = useState("");
+   const inputComponentRef = useRef();
 
-  // Comportement
+
+  // Comportement (gestionnaire de state ou "state handlers")
   const handleAddProduct = (newProduct) => { 
 
-    const copy    = [...menu];
+    const copy = deepClone(menu);  
     const newMenu = [newProduct, ...copy];
     setMenu(newMenu);     // bonne pratique on modifie le state toujour proche de la ou il est défini
 
   }
 
   const handleDeleteCard = (id) => { 
-    const copy    = [...menu];
+    const copy = deepClone(menu);  
     const newMenu = copy.filter((product) => product.id !== id );
     setMenu(newMenu);
   }
 
   const handleResetMenu = () => { 
     setMenu(fakeMenu2);
+  }
+
+  const handleEditProduct = (productToEdit) => { 
+    const copy = deepClone(menu);  // la on a une copy en deepClone(en profondeur, voir explication)
+    const indexProductInMenu = copy.findIndex((product) => product.id === productToEdit.id);
+    copy[indexProductInMenu] = productToEdit;
+    setMenu(copy);
   }
 
   const orderContextValue = {
@@ -58,6 +68,13 @@ export default function OrderPage() {
 
     newProduct,
     setNewProduct,
+
+    productIsSelected,
+    setProductIsSelected,
+
+    handleEditProduct,
+    
+    inputComponentRef,
   };
 
   // affichage

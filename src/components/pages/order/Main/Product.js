@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { formatPrice } from "../../../../utils/maths";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { theme } from "../../../../theme";
 import { TiDelete } from "react-icons/ti";
 
 
-export default function Product({ imageSource, title, price, onDelete, isModeAdmin }) {
+export default function Product({ imageSource, title, price, onDelete, isModeAdmin, onSelected, productSelected, id }) {
 
     // Affichage
     return (
-        <ProductStyled>
+        <ProductStyled isModeAdmin={isModeAdmin} onClick={isModeAdmin ? onSelected : null} productSelected={productSelected} id={id} >
             {isModeAdmin && <TiDelete onClick={onDelete} className="TiDelete" />}
             <img src={imageSource} alt={title} />
             <div className="info">
@@ -20,7 +20,7 @@ export default function Product({ imageSource, title, price, onDelete, isModeAdm
                     <div className="price">
                         <p>{formatPrice(price)}</p>
                     </div>
-                    <PrimaryButton value={"Ajouter"} className={"divbutton"} />
+                    <PrimaryButton value={"Ajouter"} className={"divbutton"} onClick={(event) => event.stopPropagation()} />
                 </div>
             </div>
         </ProductStyled>
@@ -31,10 +31,13 @@ export default function Product({ imageSource, title, price, onDelete, isModeAdm
 const ProductStyled = styled.div`
     /* border: 1px solid blue; */
     background: ${theme.colors.white};
-    border-radius: 15px;
+    border-radius: ${theme.borderRadius.extraRound};
     box-shadow: ${theme.shadows.medium};
     padding: 20px 20px 10px 20px;
     position: relative;
+
+    ${(props) => props.isModeAdmin && isModeAdminStyle}
+    ${(props) => props.isModeAdmin && props.productSelected === props.id ? isSelectedStyle : ""}
 
     .TiDelete{
       position: absolute;   // evite le decalage de la carte lié à l'apparition du delete dedans comme il fait 30 de height et de widht cela decaler la carte en le mettant en postion absolute il n'y a plus ce probleme
@@ -112,3 +115,53 @@ const ProductStyled = styled.div`
       }
     }
 `;
+
+const isModeAdminStyle = css`
+  &:hover{
+    /* border: 1px solid #FF9A23; */
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: ease-out 0.4s;
+    box-shadow: ${theme.shadows.orangeHighLight};
+  }
+`
+
+const isSelectedStyle = css`
+  background: #FF9A23;
+
+  .TiDelete{
+    color: ${theme.colors.white} !important;  // important force ces styles a prendre le dessus car je ne sais pas pourquoi il ne voulais pas s'appliquer
+
+    &:hover{
+        color: ${theme.colors.red} !important;
+      }
+
+    &:active{
+     color: ${theme.colors.white} !important;
+    }
+
+  }
+
+  button{
+    background: ${theme.colors.white};
+    color: ${theme.colors.primary};
+    transition: background-color 0.3s ease;
+
+    &:hover{
+        border: 1px solid white !important;
+        color: ${theme.colors.white};
+        background: ${theme.colors.primary}; 
+    }
+
+    &:active{
+      background: ${theme.colors.white};
+      color: ${theme.colors.primary};
+    }
+  }
+
+  .price{
+    color: ${theme.colors.white};
+  }
+`
+
+

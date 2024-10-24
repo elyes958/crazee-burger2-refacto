@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-export default function PrimaryButton({value, Icon, className, isSuccess, version = "normal"}) {
+export default function PrimaryButton({value, Icon, className, isSuccess, onClick, version = "normal"}) {
   return (
-    <PrimaryButtonStyled className={className} version={version} >
+    <PrimaryButtonStyled className={className} version={version} onClick={onClick} >
         <button className={isSuccess && "successStyle"} >
             {value}
             {Icon && Icon}

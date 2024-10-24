@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Product from "./Product";
@@ -6,7 +6,32 @@ import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const { menu, handleDeleteCard, isModeAdmin } = useContext(OrderContext);
+  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef } = useContext(OrderContext);
+
+  // Comportements
+  const handleSelectedCard = async (event, id) => {
+    event.stopPropagation();
+
+    // console.log("id: " + id);
+
+    await setProductIsSelected(id);
+    await setDisplayPanel(true);
+    await setSelectTab("edit");
+
+    inputComponentRef.current.focus();
+  }
+
+  const handleDelete = (event, id) => { 
+    event.stopPropagation();
+
+    if(productIsSelected === id){
+      setProductIsSelected("");
+    }
+
+    handleDeleteCard(id);
+    
+    inputComponentRef.current.focus(); // corrige le bug quand on supprime une card on perdais le focus
+  }
 
   // Affichage
     return (
@@ -18,8 +43,10 @@ export default function Menu() {
              imageSource={product.imageSource}
              title={product.title}
              price={product.price}
-             onDelete={() => handleDeleteCard(product.id)}
+             onDelete={(event) => handleDelete(event, product.id)}
              isModeAdmin={isModeAdmin}
+             onSelected={(event) => handleSelectedCard(event, product.id)}
+             productSelected={productIsSelected}
             />
         ) 
         }
