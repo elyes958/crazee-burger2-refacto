@@ -3,11 +3,9 @@ import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import Image from "./Image";
 import TextInput from "../../../../reusable-ui/TextInput";
-import { FaHamburger } from "react-icons/fa";
 import { theme } from "../../../../../theme";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 import EditFormInfoMesssage from "./EditFormInfoMesssage";
+import { getInputTextsConfig } from "./InputTextConfig";
 
 export default function EditForm() {
   // State
@@ -25,42 +23,27 @@ export default function EditForm() {
     handleEditProduct(productToEdit);
  }
 
+ const inputTexts = getInputTextsConfig(handleEditForm, productToEdit);
+
   // Affichage
   return (
     <EditFormStyled>
         {productToEdit.imageSource === "/images/coming-soon.png" ? <Image image={""} /> : <Image image={productToEdit.imageSource}/>}
         <div className="inputs-andicons">
-        <TextInput
-            id={"0"} 
-            Icon={<FaHamburger />} 
-            onChange={handleEditForm} 
-            value={productToEdit.title} 
-            type={"text"} 
-            name={"title"} 
-            placeholder={"Nom du produit (ex= Super Burger)"} 
-            version={"minimalist" }
-            ref={inputComponentRef} 
-        />
-        <TextInput
-            id={"1"} 
-            Icon={<BsFillCameraFill />} 
-            onChange={handleEditForm} 
-            value={productToEdit.imageSource === "/images/coming-soon.png" ? "" : productToEdit.imageSource} 
-            type={"url"} 
-            name={"imageSource"} 
-            placeholder={"Lien URL d'une image (ex: http://la-photo-de-mon-produit.png)"} 
-            version={"minimalist" } 
-        />
-        <TextInput
-            id={"2"} 
-            Icon={<MdOutlineEuro />} 
-            onChange={handleEditForm} 
-            value={productToEdit.price} 
-            type={"number"} 
-            name={"price"} 
-            placeholder={"Prix"} 
-            version={"minimalist" } 
-        />
+           {inputTexts.map((input) =>
+             <TextInput
+             key={input.id}
+             id={input.id}
+             Icon={input.Icon}
+             onChange={input.onChange}
+             value={input.value}
+             type={input.type}
+             name={input.name}
+             placeholder={input.placeholder}
+             version={input.version}
+             ref={input.name === "title" ? inputComponentRef : null}
+             />
+           )}
         </div>
         <EditFormInfoMesssage />
     </EditFormStyled>
