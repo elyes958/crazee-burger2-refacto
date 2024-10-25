@@ -28,7 +28,7 @@ const BasketStyled = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     height: 70px;
-    padding: 0px 16px 0px 16px;
+    /* padding: 0px 16px 0px 16px; */
     background: #292729;
 
     div{
@@ -42,6 +42,7 @@ const BasketStyled = styled.div`
          font-size: 36px;
          line-height: 45px;
          color: #FFA01B;
+         margin-left: 16px;
        }
        .price{
          font-family: "Amatic SC";
@@ -49,6 +50,7 @@ const BasketStyled = styled.div`
          font-size: 36px;
          line-height: 45px;
          color: #FFA01B;
+         margin-right: 16px;
        }
     }
   }
