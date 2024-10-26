@@ -1,20 +1,20 @@
 import styled from "styled-components";
-import { theme } from "../../../../theme";
+import { theme } from "../../../../../theme";
+import Total from "./Total";
+import Footer from "./Footer";
+import { formatPrice } from "../../../../../utils/maths";
 
 export default function Basket() {
   return (
     <BasketStyled>
         <div className="total-price">
-            <div>
-                <span className="total">TOTAL</span>
-                <span className="price">0,00 €</span>
-            </div>
+            <Total amountToPay={formatPrice(0)} />
         </div>
         <div className="body">
           <span>VOTRE COMMANDE EST VIDE.</span>
         </div>
         <div className="footer">
-            <span>Codé avec ❤️ et React.JS</span>
+             <Footer/>
         </div>
     </BasketStyled>
   )
@@ -34,29 +34,6 @@ const BasketStyled = styled.div`
     height: 70px;
     /* padding: 0px 16px 0px 16px; */
     background: #292729;
-
-    div{
-       display: flex;
-       justify-content: space-between;
-       padding: 12px 2px 13px 0px;
-
-       .total{
-         font-family: "Amatic SC";
-         font-weight: 400;
-         font-size: 36px;
-         line-height: 45px;
-         color: #FFA01B;
-         margin-left: 16px;
-       }
-       .price{
-         font-family: "Amatic SC";
-         font-weight: 700;
-         font-size: 36px;
-         line-height: 45px;
-         color: #FFA01B;
-         margin-right: 16px;
-       }
-    }
   }
 
   .body{ // si jamais ta besoin d'ajouter une div dans le span
@@ -77,12 +54,5 @@ const BasketStyled = styled.div`
     background: #292729;
     border-bottom-left-radius: 15px;
     padding: 22px 75px 22px 75px;
-    span{
-        font-family: "Amatic SC", cursive;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 25px;
-        color: white;
-    }
   }
 `;
