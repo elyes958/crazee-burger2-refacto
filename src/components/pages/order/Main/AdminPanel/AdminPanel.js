@@ -26,5 +26,4 @@ const AdminPanelStyled = styled.div`
   position: absolute;
   bottom: 0;     // Aligne AdminPanel en bas du conteneur Main(sans ça il ce met à la suite de main et depasse du container) 
   z-index: 1;   // Pour s’assurer qu'il se superpose au Menu
-  
 `;

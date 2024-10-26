@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../../../theme";
 
 export default function Basket() {
   return (
@@ -9,7 +10,9 @@ export default function Basket() {
                 <span className="price">0,00 €</span>
             </div>
         </div>
-        <span className="basket-empty">VOTRE COMMANDE EST VIDE.</span>
+        <div className="body">
+          <span>VOTRE COMMANDE EST VIDE.</span>
+        </div>
         <div className="footer">
             <span>Codé avec ❤️ et React.JS</span>
         </div>
@@ -23,7 +26,8 @@ const BasketStyled = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background: white;
-
+  overflow: hidden; // ne marche pas chez moi pour cacher ce qui depasse en bas à gauche du basket(à chercher)
+  
   .total-price{
     /* border: 1px solid red; */
     width: 100%;
@@ -55,13 +59,17 @@ const BasketStyled = styled.div`
     }
   }
 
-  .basket-empty{
+  .body{ // si jamais ta besoin d'ajouter une div dans le span
+    flex: 1;
+    box-shadow: ${theme.shadows.basket};
     font-family: "Amatic SC";
     font-weight: 400;
     font-size: 36px;
     line-height: 72px;
-    text-align: center;
     color: #747B91;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .footer{
@@ -69,7 +77,6 @@ const BasketStyled = styled.div`
     background: #292729;
     border-bottom-left-radius: 15px;
     padding: 22px 75px 22px 75px;
-
     span{
         font-family: "Amatic SC", cursive;
         font-weight: 700;

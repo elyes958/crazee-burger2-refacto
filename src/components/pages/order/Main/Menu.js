@@ -60,7 +60,7 @@ const MenuStyled = styled.div`
     height: 750px;
     background: ${theme.colors.white};
     border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    /* border-bottom-left-radius: 15px; */
     background: #F5F5F7;
     box-shadow:${theme.shadows.strong};
     box-sizing: border-box;
