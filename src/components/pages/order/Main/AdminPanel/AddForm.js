@@ -1,19 +1,22 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import TextInput from "../../../../reusable-ui/TextInput";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
 import Image from "./Image";
 import SubmitMessage from "./SubmitMessage";
 import { getInputTextsConfig } from "./InputTextConfig";
+import { useSuccessMessage } from "../../../../../hooks/useSuccessMessage";
 
 
 export default function AddForm() {
    // State
    const { newProduct, setNewProduct } = useContext(OrderContext);
    const { handleAddProduct } =  useContext(OrderContext);
-   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+   const {showSuccessMessage, displaySuccessMessage} = useSuccessMessage();
+   // utilisation du custom hooks à la place du state avant(ci dessous)
+   // const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   // Comportements
   const handleSubmit =  (event) => {
@@ -34,7 +37,7 @@ export default function AddForm() {
         price:  "",
     })
 
-    success();
+    displaySuccessMessage();
   }
 
 
@@ -49,13 +52,13 @@ export default function AddForm() {
   }
 
 
-  const success = () => { 
-    setShowSuccessMessage(true);
+//   const successMessage = () => { 
+//     setShowSuccessMessage(true);
 
-    setTimeout(() => {
-      setShowSuccessMessage(false);  
-    }, 2000);
- }
+//     setTimeout(() => {
+//       setShowSuccessMessage(false);  
+//     }, 2000);
+//  }
 
  const inputTexts = getInputTextsConfig(handleChange, newProduct);
 
