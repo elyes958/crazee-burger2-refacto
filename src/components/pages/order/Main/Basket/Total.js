@@ -3,16 +3,26 @@ import styled from "styled-components";
 export default function Total({ amountToPay }) {
   return (
     <TotalStyled>
-        <span className="total">TOTAL</span>
-        <span className="price">{amountToPay}</span>
+        <div>
+            <span className="total">TOTAL</span>
+            <span className="price">{amountToPay}</span>
+        </div>
     </TotalStyled>
   )
 }
 
 const TotalStyled = styled.div`
-       display: flex;
-       justify-content: space-between;
-       padding: 12px 2px 13px 0px;
+        /* border: 1px solid red; */
+        width: 100%;
+        height: 70px;
+        /* padding: 0px 16px 0px 16px; */
+        background: #292729;
+
+       div{
+         display: flex;
+         justify-content: space-between;
+         padding: 12px 2px 13px 0px;
+       }
 
        .total{
          font-family: "Amatic SC";
