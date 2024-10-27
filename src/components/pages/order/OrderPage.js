@@ -4,8 +4,7 @@ import Main from "./Main/Main";
 import Navbar from "./Navbar/Navbar";
 import OrderContext from "../../../context/OrderContext";
 import { useRef, useState } from "react";
-import { fakeMenu2 } from "../../../fakeData/fakeMenu";
-import { deepClone } from "../../../utils/array";
+import { useMenu } from "../../../hooks/useMenu";
 
 
 export default function OrderPage() {
@@ -13,7 +12,6 @@ export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [displayPanel, setDisplayPanel] = useState(true);
   const [selectTab, setSelectTab] = useState("add");
-  const [menu, setMenu] = useState(fakeMenu2);
   const [newProduct, setNewProduct] = useState({   // on le remonte ici plutot que dans addForm pour eviter le bug quand on entre des valeur dans le form et qu'on collapse avant de soumettre
     title: "",
     imageSource:  "",
@@ -21,33 +19,8 @@ export default function OrderPage() {
    });
    const [productIsSelected, setProductIsSelected] = useState("");
    const inputComponentRef = useRef();
+   const {menu, handleAddProduct, handleDeleteCard, handleResetMenu, handleEditProduct} = useMenu(); // on recupere tout via le custom hooks qui nous permet d'avoir beaucoup moins de ligne de state dans la page order en extrayant le state et les comportement qui lui sont lie dans un custom hook
 
-
-  // Comportement (gestionnaire de state ou "state handlers")
-  const handleAddProduct = (newProduct) => { 
-
-    const copy = deepClone(menu);  
-    const newMenu = [newProduct, ...copy];
-    setMenu(newMenu);     // bonne pratique on modifie le state toujour proche de la ou il est défini
-
-  }
-
-  const handleDeleteCard = (id) => { 
-    const copy = deepClone(menu);  
-    const newMenu = copy.filter((product) => product.id !== id );
-    setMenu(newMenu);
-  }
-
-  const handleResetMenu = () => { 
-    setMenu(fakeMenu2);
-  }
-
-  const handleEditProduct = (productToEdit) => { 
-    const copy = deepClone(menu);  // la on a une copy en deepClone(en profondeur, voir explication)
-    const indexProductInMenu = copy.findIndex((product) => product.id === productToEdit.id);
-    copy[indexProductInMenu] = productToEdit;
-    setMenu(copy);
-  }
 
   const orderContextValue = {
     isModeAdmin: isModeAdmin,             // cle et valeur ont le meme nom donc on peu l'ecrire sans preciser la cle sinon il aurais fallu ecrire isModeAdmin: isModeAdmin
@@ -60,7 +33,6 @@ export default function OrderPage() {
     setSelectTab,
 
     menu,
-    setMenu,
 
     handleAddProduct,
     handleDeleteCard,
