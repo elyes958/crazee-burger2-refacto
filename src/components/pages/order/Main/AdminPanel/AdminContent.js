@@ -26,7 +26,7 @@ const AdminContentStyled = styled.div`
     width: 100%;
     height: 250px;
     background: ${theme.colors.white};
-    border-bottom-left-radius: ${theme.borderRadius.extraRound};
+    /* border-bottom-left-radius: ${theme.borderRadius.extraRound}; */
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
     box-shadow: ${theme.shadows.subtle};
 `;

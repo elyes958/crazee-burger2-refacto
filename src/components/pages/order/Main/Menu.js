@@ -6,7 +6,7 @@ import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef } = useContext(OrderContext);
+  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef, selectTab } = useContext(OrderContext);
 
   // Comportements
   const handleSelectedCard = async (event, id) => {
@@ -30,7 +30,9 @@ export default function Menu() {
 
     handleDeleteCard(id);
     
-    inputComponentRef.current.focus(); // corrige le bug quand on supprime une card on perdais le focus
+    if(selectTab === "edit" && productIsSelected !== ""){  // cet condition ma regler le bug que j'avais avec le focus(msg d'erreur) quand je supprimer un produit sur l'onglet ajout(enleve cet condition pour revoir ce bug)
+       inputComponentRef.current.focus(); // corrige le bug quand on supprime une card on perdais le focus
+    }
   }
 
   // Affichage
@@ -60,15 +62,15 @@ const MenuStyled = styled.div`
     height: 750px;
     background: ${theme.colors.white};
     border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    /* border-bottom-left-radius: 15px; */
     background: #F5F5F7;
     box-shadow:${theme.shadows.strong};
     box-sizing: border-box;
     padding: 50px 92px;
 
     display: grid;     // initialiser grid
-    grid-template-columns:repeat(4, 240px);
-    grid-template-rows: repeat(4, 330px);
+    grid-template-columns:repeat(3, 240px);
+    grid-template-rows: repeat(3, 330px);
     grid-row-gap: 60px;
     grid-column-gap: 85px;
     overflow: hidden;      // on cache tout ce qui depasse du container
