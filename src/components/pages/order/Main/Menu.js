@@ -6,7 +6,7 @@ import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef } = useContext(OrderContext);
+  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef, selectTab } = useContext(OrderContext);
 
   // Comportements
   const handleSelectedCard = async (event, id) => {
@@ -30,7 +30,9 @@ export default function Menu() {
 
     handleDeleteCard(id);
     
-    inputComponentRef.current.focus(); // corrige le bug quand on supprime une card on perdais le focus
+    if(selectTab === "edit" && productIsSelected !== ""){  // cet condition ma regler le bug que j'avais avec le focus(msg d'erreur) quand je supprimer un produit sur l'onglet ajout(enleve cet condition pour revoir ce bug)
+       inputComponentRef.current.focus(); // corrige le bug quand on supprime une card on perdais le focus
+    }
   }
 
   // Affichage

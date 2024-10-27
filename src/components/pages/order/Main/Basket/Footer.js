@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../../../../theme";
 
 export default function Footer() {
   return (
@@ -10,12 +11,12 @@ export default function Footer() {
 
 const FooterStyled = styled.div`
         /* border: 1px solid green; */
-        background: #292729;
+        background: ${theme.colors.background_dark};
         border-bottom-left-radius: 15px;
         padding: 22px 75px 22px 75px;
         font-family: "Amatic SC", cursive;
-        font-weight: 700;
-        font-size: 20px;
+        font-weight: ${theme.weights.bold};
+        font-size: ${theme.fonts.P2};
         line-height: 25px;
-        color: white;
+        color: ${theme.colors.white};
 `;

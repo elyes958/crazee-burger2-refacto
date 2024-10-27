@@ -17,8 +17,8 @@ const BasketBodyStyled = styled.div`
     align-items: center;
     justify-content: center;
     font-family: "Amatic SC";
-    font-weight: 400;
-    font-size: 36px;
+    font-weight: ${theme.weights.regular};
+    font-size: ${theme.fonts.P4};
     line-height: 72px;
-    color: #747B91;
+    color: ${theme.colors.greyBlue};
 `;

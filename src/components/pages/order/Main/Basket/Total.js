@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../../../../theme";
 
 export default function Total({ amountToPay }) {
   return (
@@ -16,7 +17,7 @@ const TotalStyled = styled.div`
         width: 100%;
         height: 70px;
         /* padding: 0px 16px 0px 16px; */
-        background: #292729;
+        background: ${theme.colors.background_dark};
 
        div{
          display: flex;
@@ -26,18 +27,18 @@ const TotalStyled = styled.div`
 
        .total{
          font-family: "Amatic SC";
-         font-weight: 400;
-         font-size: 36px;
+         font-weight: ${theme.weights.regular};
+         font-size: ${theme.fonts.P4};
          line-height: 45px;
-         color: #FFA01B;
+         color: ${theme.colors.primary};
          margin-left: 16px;
        }
        .price{
          font-family: "Amatic SC";
-         font-weight: 700;
-         font-size: 36px;
+         font-weight: ${theme.weights.bold};
+         font-size: ${theme.fonts.P4};
          line-height: 45px;
-         color: #FFA01B;
+         color: ${theme.colors.primary};
          margin-right: 16px;
        }
 `;
