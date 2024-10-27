@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
+import EmptyBasket from "./EmptyBasket";
+import { useState } from "react";
 
 
 export default function BasketBody() {
+  // State
+  const [basket, setBasket] = useState([]);
+
   return (
     <BasketBodyStyled>
-        <span>VOTRE COMMANDE EST VIDE.</span>
+        <EmptyBasket/>
     </BasketBodyStyled>
   )
 }
@@ -16,9 +21,4 @@ const BasketBodyStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Amatic SC";
-    font-weight: ${theme.weights.regular};
-    font-size: ${theme.fonts.P4};
-    line-height: 72px;
-    color: ${theme.colors.greyBlue};
 `;

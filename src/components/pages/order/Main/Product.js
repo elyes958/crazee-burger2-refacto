@@ -5,7 +5,7 @@ import { theme } from "../../../../theme";
 import { TiDelete } from "react-icons/ti";
 
 
-export default function Product({ imageSource, title, price, onDelete, isModeAdmin, onSelected, productSelected, id }) {
+export default function Product({ imageSource, title, price, onDelete, isModeAdmin, onSelected, productSelected, id, addProductInBasket }) {
 
     // Affichage
     return (
@@ -20,7 +20,7 @@ export default function Product({ imageSource, title, price, onDelete, isModeAdm
                     <div className="price">
                         <p>{formatPrice(price)}</p>
                     </div>
-                    <PrimaryButton value={"Ajouter"} className={"divbutton"} onClick={(event) => event.stopPropagation()} />
+                    <PrimaryButton value={"Ajouter"} className={"divbutton"} onClick={addProductInBasket} />
                 </div>
             </div>
         </ProductStyled>

@@ -35,6 +35,10 @@ export default function Menu() {
     }
   }
 
+  const handleAddProductInBasket = (event) => { 
+    event.stopPropagation();
+  }
+
   // Affichage
     return (
         <MenuStyled>
@@ -49,6 +53,7 @@ export default function Menu() {
              isModeAdmin={isModeAdmin}
              onSelected={(event) => handleSelectedCard(event, product.id)}
              productSelected={productIsSelected}
+             addProductInBasket={(event) => handleAddProductInBasket(event)}
             />
         ) 
         }
