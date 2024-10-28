@@ -13,8 +13,7 @@ export default function BasketBody() {
 
   return (
     <BasketBodyStyled>
-        {basket.length > 0  ? 
-        basket.map((product) => 
+        {basket.map((product) => 
             <AddToBasket
                 key={product.id}
                 image={product.imageSource}
@@ -23,14 +22,13 @@ export default function BasketBody() {
                 quantity={product.quantity}
             /> 
         )
-        : 
-        <EmptyBasket
-        />}
+        }
     </BasketBodyStyled>
   )
 }
 
 const BasketBodyStyled = styled.div`
+    box-sizing: border-box;
     flex: 1;
     box-shadow: ${theme.shadows.basket};
     display: flex;

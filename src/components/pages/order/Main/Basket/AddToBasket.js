@@ -4,23 +4,23 @@ import { formatPrice } from "../../../../../utils/maths";
 export default function AddToBasket({ image, title, price, quantity }) {
   return (
     <AddToBasketStyled>
-        <img src={image} alt={title} />
-        <div className="text-info">
-            <div className="left-info">
-                <span className="title">{title}</span>
-                <span className="price">{formatPrice(price)}</span>
-            </div>
-            <span className="quantity">x {quantity}</span>
-        </div>
+         <img src={image} alt={title} />
+         <div className="text-info">
+             <div className="left-info">
+                 <span className="title">{title}</span>
+                 <span className="price">{formatPrice(price)}</span>
+             </div>
+             <span className="quantity">x {quantity}</span>
+         </div>
     </AddToBasketStyled>
   )
 }
 
 const AddToBasketStyled = styled.div`
-  width: 318px;
+  width: 290px;
   height: 86px;
   margin-top: 20px;
-  margin-left: 16px;
+  /* margin-left: 16px; */
   background: #FFFFFF;
   box-shadow: -4px 4px 15px 0px #00000033;
   display: flex;
@@ -38,7 +38,7 @@ const AddToBasketStyled = styled.div`
   .text-info{
     /* border: 2px solid black; */
     margin-top: 8px;
-    padding: 0px 20px 0px 21px;
+    padding: 0px 8px 0px 8px;
     display: flex;
 
     .quantity{
