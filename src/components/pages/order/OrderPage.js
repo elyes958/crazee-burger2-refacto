@@ -5,6 +5,7 @@ import Navbar from "./Navbar/Navbar";
 import OrderContext from "../../../context/OrderContext";
 import { useRef, useState } from "react";
 import { useMenu } from "../../../hooks/useMenu";
+import { deepClone } from "../../../utils/array";
 
 
 export default function OrderPage() {
@@ -20,6 +21,13 @@ export default function OrderPage() {
    const [productIsSelected, setProductIsSelected] = useState("");
    const inputComponentRef = useRef();
    const {menu, handleAddProduct, handleDeleteCard, handleResetMenu, handleEditProduct} = useMenu(); // on recupere tout via le custom hooks qui nous permet d'avoir beaucoup moins de ligne de state dans la page order en extrayant le state et les comportement qui lui sont lie dans un custom hook
+   const [basket, setBasket] = useState([]);
+
+   const handleAddToBasket = (productToAdd) => { 
+    const copy       = deepClone(basket);
+    const copyUpdate = [productToAdd, ...copy];
+    setBasket(copyUpdate);
+  }
 
 
   const orderContextValue = {
@@ -47,6 +55,9 @@ export default function OrderPage() {
     handleEditProduct,
     
     inputComponentRef,
+
+    basket,
+    handleAddToBasket,
   };
 
   // affichage
