@@ -9,7 +9,7 @@ export default function EmptyBasket() {
   )
 }
 
-const EmptyBasketStyled = styled.span`
+const EmptyBasketStyled = styled.div`
     font-family: "Amatic SC";
     font-weight: ${theme.weights.regular};
     font-size: ${theme.fonts.P4};
