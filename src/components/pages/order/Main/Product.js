@@ -60,8 +60,12 @@ const ProductStyled = styled.div`
     }
 
     .info{
+      /* border: 1px solid green; */
       margin-top: 20px;
-      height: 110px;
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .title{

@@ -58,6 +58,7 @@ const AddToBasketStyled = styled.div`
     padding: 5px 12px 8px 0px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     max-width: 119px;  // sans une propriete de largeur text-overflow: ellipsis ne peu pas fonctionner
 
     .title{
@@ -66,7 +67,7 @@ const AddToBasketStyled = styled.div`
       font-family: "Amatic SC";
       line-height: 32px;
       color: #17161A;
-      margin-bottom: 5px;
+      /* margin-bottom: 5px; */
       white-space: nowrap;       
       overflow: hidden;          
       text-overflow: ellipsis;

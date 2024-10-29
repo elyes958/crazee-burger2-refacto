@@ -6,7 +6,7 @@ import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef, selectTab, handleAddToBasket } = useContext(OrderContext);
+  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef, selectTab, handleAddToBasket, basket, handleQuantityProductInBasket } = useContext(OrderContext);
 
   // Comportements
   const handleSelectedCard = async (event, id) => {
@@ -40,7 +40,14 @@ export default function Menu() {
 
     const productAddInBasket = menu.find((product) => product.id === id);
 
-    handleAddToBasket(productAddInBasket);
+    const productAlreadyInBasket = basket.find((product) => product.id === productAddInBasket.id);
+
+    if(productAlreadyInBasket === undefined){
+      handleAddToBasket(productAddInBasket); 
+    } else {
+      productAlreadyInBasket.quantity += 1;
+      handleQuantityProductInBasket(productAlreadyInBasket, id);
+    }
   }
 
   // Affichage

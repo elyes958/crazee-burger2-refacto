@@ -23,11 +23,12 @@ export default function AddForm() {
     event.preventDefault();
 
     const newProductToAdd = {
-        id: Date.now(),
+        id: new Date().getTime(),
         title: newProduct.title,
         imageSource: newProduct.imageSource || "/images/coming-soon.png",    // si imageSource n'est pas vide tu l'affiche sinon tu affiche l'image
         price: newProduct.price,
     }
+    // console.log(newProductToAdd.id)
 
     handleAddProduct(newProductToAdd);
 
