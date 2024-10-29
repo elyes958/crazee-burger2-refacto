@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import EmptyBasket from "./EmptyBasket";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import AddToBasket from "./AddToBasket";
 import OrderContext from "../../../../../context/OrderContext";
 
@@ -35,4 +34,5 @@ const BasketBodyStyled = styled.div`
     flex-direction: column;
     align-items: center;
     /* justify-content: center; */
+    overflow-y: scroll;
 `;

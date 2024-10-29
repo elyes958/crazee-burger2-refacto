@@ -17,7 +17,7 @@ export default function AddToBasket({ image, title, price, quantity }) {
 }
 
 const AddToBasketStyled = styled.div`
-  width: 290px;
+  width: 280px;
   height: 86px;
   margin-top: 20px;
   /* margin-left: 16px; */
@@ -32,13 +32,13 @@ const AddToBasketStyled = styled.div`
     width: 85px;
     height: 70px;
     margin-top: 8px;
-    margin-left: 16px;
+    margin-left: 12px;
   }
 
   .text-info{
     /* border: 2px solid black; */
     margin-top: 8px;
-    padding: 0px 8px 0px 8px;
+    padding: 0px 5px 0px 5px;
     display: flex;
 
     .quantity{
@@ -47,17 +47,18 @@ const AddToBasketStyled = styled.div`
       font-family: "Open Sans";
       line-height: 20px;
       margin-top: 25px;
-      margin-right: 20px;
+      /* margin-right: 20px; */
       margin-left: 11px;
       color: #FFA01B;
     }
   }
 
   .left-info{
-    padding: 5px 21px 8px 0px;
     /* border: 1px solid red; */
+    padding: 5px 12px 8px 0px;
     display: flex;
     flex-direction: column;
+    max-width: 119px;  // sans une propriete de largeur text-overflow: ellipsis ne peu pas fonctionner
 
     .title{
       font-size: 24px;
