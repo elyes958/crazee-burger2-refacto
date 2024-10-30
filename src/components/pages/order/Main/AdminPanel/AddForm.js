@@ -27,6 +27,7 @@ export default function AddForm() {
         title: newProduct.title,
         imageSource: newProduct.imageSource || "/images/coming-soon.png",    // si imageSource n'est pas vide tu l'affiche sinon tu affiche l'image
         price: newProduct.price,
+        quantity: newProduct.price ? 1 : null,
     }
     // console.log(newProductToAdd.id)
 

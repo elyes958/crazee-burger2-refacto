@@ -12,9 +12,14 @@ export default function Basket() {
   // State
   const { basket } = useContext(OrderContext);
 
+  // Comportements
+  const initialValue   = 0;
+  const sumOfBasketProducts = basket.reduce((accumulator, currentValue) => accumulator + (currentValue.price * currentValue.quantity)
+  , initialValue,);
+
   return (
     <BasketStyled>
-        <Total amountToPay={formatPrice(0)} />
+        <Total amountToPay={formatPrice(sumOfBasketProducts)} />
         {basket.length > 0  ? <BasketBody/> : <EmptyBasket />}
         <Footer/>
     </BasketStyled>
