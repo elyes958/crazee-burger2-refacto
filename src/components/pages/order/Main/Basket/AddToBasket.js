@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 export default function AddToBasket({ image, title, price, quantity }) {
   return (
@@ -12,6 +13,7 @@ export default function AddToBasket({ image, title, price, quantity }) {
              </div>
              <span className="quantity">x {quantity}</span>
          </div>
+         <div className="delete-button"><MdOutlineDeleteForever /></div>
     </AddToBasketStyled>
   )
 }
@@ -25,6 +27,7 @@ const AddToBasketStyled = styled.div`
   box-shadow: -4px 4px 15px 0px #00000033;
   display: flex;
   border-radius: 5px;
+  position: relative;
 
   img{
     /* border: 1px solid green; */
@@ -80,5 +83,39 @@ const AddToBasketStyled = styled.div`
       line-height: 20px;
       color: #FFA01B;
     }
+  }
+
+  .delete-button{
+    opacity: 0;
+    left: 210px;   // position absolute a gauche et il ce place sur la quantite
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 79px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #E25549;
+    svg{
+      width: 24px;
+      height: 24px;
+      color: white;
+    }
+
+    &:hover{
+      cursor: pointer;
+      svg{
+        color: black;
+      }
+    }
+  }
+
+  &:hover .delete-button{
+    opacity: 1;      // affiche/cache l'element
+  }
+
+  &:hover .quantity{
+    opacity: 0;
   }
 `;
