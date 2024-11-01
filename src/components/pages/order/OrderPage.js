@@ -37,6 +37,12 @@ export default function OrderPage() {
     setBasket(copy);
   }
 
+  const handleDeleteProductInBasket = (idToDelete) => { 
+    const copy       = deepClone(basket);
+    const copyUpdate = copy.filter((product) => product.id !== idToDelete);
+    setBasket(copyUpdate);
+  }
+
 
   const orderContextValue = {
     isModeAdmin: isModeAdmin,             // cle et valeur ont le meme nom donc on peu l'ecrire sans preciser la cle sinon il aurais fallu ecrire isModeAdmin: isModeAdmin
@@ -67,6 +73,7 @@ export default function OrderPage() {
     basket,
     handleAddToBasket,
     handleQuantityProductInBasket,
+    handleDeleteProductInBasket,
   };
 
   // affichage

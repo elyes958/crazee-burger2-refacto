@@ -8,7 +8,7 @@ import OrderContext from "../../../../../context/OrderContext";
 
 export default function BasketBody() {
   // State
-  const { basket } = useContext(OrderContext);
+  const { basket, handleDeleteProductInBasket } = useContext(OrderContext);
 
   return (
     <BasketBodyStyled>
@@ -19,6 +19,7 @@ export default function BasketBody() {
                 price={product.price}
                 title={product.title}
                 quantity={product.quantity}
+                onClick={() => handleDeleteProductInBasket(product.id)}
             /> 
         )
         }

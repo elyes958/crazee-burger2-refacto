@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
 import { MdOutlineDeleteForever } from "react-icons/md";
 
-export default function AddToBasket({ image, title, price, quantity }) {
+export default function AddToBasket({ image, title, price, quantity, onClick }) {
   return (
     <AddToBasketStyled>
          <img src={image} alt={title} />
@@ -13,7 +13,7 @@ export default function AddToBasket({ image, title, price, quantity }) {
              </div>
              <span className="quantity">x {quantity}</span>
          </div>
-         <div className="delete-button"><MdOutlineDeleteForever /></div>
+         <div className="delete-button" onClick={onClick} ><MdOutlineDeleteForever /></div>
     </AddToBasketStyled>
   )
 }
