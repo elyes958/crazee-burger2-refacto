@@ -109,6 +109,12 @@ const AddToBasketStyled = styled.div`
         color: black;
       }
     }
+
+    &:active{
+      svg{
+        color: white;
+      }
+    }
   }
 
   &:hover .delete-button{
