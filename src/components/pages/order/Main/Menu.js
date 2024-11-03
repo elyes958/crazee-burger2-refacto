@@ -6,7 +6,7 @@ import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
   // State
-  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef, selectTab } = useContext(OrderContext);
+  const { menu, handleDeleteCard, isModeAdmin, setDisplayPanel ,setSelectTab, productIsSelected , setProductIsSelected, inputComponentRef, selectTab, handleAddToBasket, basket, handleQuantityProductInBasket, handleDeleteProductInBasket } = useContext(OrderContext);
 
   // Comportements
   const handleSelectedCard = async (event, id) => {
@@ -29,9 +29,25 @@ export default function Menu() {
     }
 
     handleDeleteCard(id);
+    handleDeleteProductInBasket(id); // supprime egalement du basket
     
     if(selectTab === "edit" && productIsSelected !== ""){  // cet condition ma regler le bug que j'avais avec le focus(msg d'erreur) quand je supprimer un produit sur l'onglet ajout(enleve cet condition pour revoir ce bug)
        inputComponentRef.current.focus(); // corrige le bug quand on supprime une card on perdais le focus
+    }
+  }
+
+  const handleAddProductInBasket = (event, id) => { 
+    event.stopPropagation();
+
+    const productAddInBasket = menu.find((product) => product.id === id);
+
+    const productAlreadyInBasket = basket.find((product) => product.id === productAddInBasket.id);
+
+    if(productAlreadyInBasket === undefined){
+      handleAddToBasket(productAddInBasket); 
+    } else {
+      productAlreadyInBasket.quantity += 1;
+      handleQuantityProductInBasket(productAlreadyInBasket, id);
     }
   }
 
@@ -49,6 +65,7 @@ export default function Menu() {
              isModeAdmin={isModeAdmin}
              onSelected={(event) => handleSelectedCard(event, product.id)}
              productSelected={productIsSelected}
+             addProductInBasket={(event) => handleAddProductInBasket(event, product.id)}
             />
         ) 
         }
