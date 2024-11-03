@@ -16,6 +16,7 @@ export default function Basket() {
   const initialValue   = 0;
   const sumOfBasketProducts = basket.reduce((accumulator, currentValue) => accumulator + (currentValue.price * currentValue.quantity)
   , initialValue,);
+  // une seul instruction dans une fct fleche = pas besoin d'accolade ni de return
 
   return (
     <BasketStyled>

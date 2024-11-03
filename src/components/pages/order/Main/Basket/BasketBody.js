@@ -36,4 +36,9 @@ const BasketBodyStyled = styled.div`
     align-items: center;
     /* justify-content: center; */
     overflow-y: scroll;
+    // ces 2 propriete en dessous permette d'avoir la scrollbar invisible quand la souris n'est pas dessus
+    scrollbar-color: transparent transparent;
+    &:hover {
+      scrollbar-color: initial;
+    }
 `;

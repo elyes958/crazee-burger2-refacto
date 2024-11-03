@@ -93,7 +93,7 @@ const AddToBasketStyled = styled.div`
     justify-content: center;
     align-items: center;
     width: 76px;
-    height: 79px;
+    height: 100%;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     background: #E25549;
