@@ -8,7 +8,14 @@ import OrderContext from "../../../../../context/OrderContext";
 
 export default function BasketBody() {
   // State
-  const { basket, handleDeleteProductInBasket } = useContext(OrderContext);
+  const { basket, handleDeleteProductInBasket, isModeAdmin, productIsSelected, setProductIsSelected, setDisplayPanel , setSelectTab } = useContext(OrderContext);
+
+  // Comportements
+  const handleSelectInBasket = (id) => { 
+    setProductIsSelected(id);
+    setDisplayPanel(true);
+    setSelectTab("edit");
+  }
 
   return (
     <BasketBodyStyled>
@@ -19,7 +26,11 @@ export default function BasketBody() {
                 price={product.price}
                 title={product.title}
                 quantity={product.quantity}
-                onClick={() => handleDeleteProductInBasket(product.id)}
+                onDelete={() => handleDeleteProductInBasket(product.id)}
+                onSelect={() => handleSelectInBasket(product.id)}
+                isModeAdmin={isModeAdmin}
+                productIsSelected={productIsSelected}
+                id={product.id}
             /> 
         )
         }

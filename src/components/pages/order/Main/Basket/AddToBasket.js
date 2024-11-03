@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import { theme } from "../../../../../theme";
 
-export default function AddToBasket({ image, title, price, quantity, onClick }) {
+export default function AddToBasket({ image, title, price, quantity, onDelete, onSelect, isModeAdmin, productIsSelected, id }) {
   return (
-    <AddToBasketStyled>
+    <AddToBasketStyled onClick={onSelect} isModeAdmin={isModeAdmin} productIsSelected={productIsSelected} id={id} >
          <img src={image} alt={title} />
          <div className="text-info">
              <div className="left-info">
@@ -13,7 +14,7 @@ export default function AddToBasket({ image, title, price, quantity, onClick }) 
              </div>
              <span className="quantity">x {quantity}</span>
          </div>
-         <div className="delete-button" onClick={onClick} ><MdOutlineDeleteForever /></div>
+         <div className="delete-button" onClick={onDelete} ><MdOutlineDeleteForever /></div>
     </AddToBasketStyled>
   )
 }
@@ -28,6 +29,13 @@ const AddToBasketStyled = styled.div`
   display: flex;
   border-radius: 5px;
   position: relative;
+
+  background: ${((props) => props.isModeAdmin && props.productIsSelected === props.id ? `${theme.colors.primary}` : `${theme.colors.white}`)};
+
+  &:hover{
+    cursor: ${((props) => props.isModeAdmin ?  "pointer" : "default")}
+  }
+
 
   img{
     /* border: 1px solid green; */
@@ -52,7 +60,7 @@ const AddToBasketStyled = styled.div`
       margin-top: 25px;
       /* margin-right: 20px; */
       margin-left: 11px;
-      color: #FFA01B;
+      color: ${((props) => props.isModeAdmin && props.productIsSelected === props.id ? `${theme.colors.white}` : `${theme.colors.primary}`)};
     }
   }
 
@@ -81,7 +89,7 @@ const AddToBasketStyled = styled.div`
       font-weight: 400;
       font-family: "Open Sans";
       line-height: 20px;
-      color: #FFA01B;
+      color: ${((props) => props.isModeAdmin && props.productIsSelected === props.id ? `${theme.colors.white}` : `${theme.colors.primary}`)};
     }
   }
 
