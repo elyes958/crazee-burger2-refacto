@@ -9,18 +9,21 @@ import { getInputTextsConfig } from "./InputTextConfig";
 
 export default function EditForm() {
   // State
-  const {productIsSelected, menu, handleEditProduct, inputComponentRef} = useContext(OrderContext);
+  const {productIsSelected, menu, handleEditProduct, inputComponentRef, basket, handleEditProductInBasket} = useContext(OrderContext);
 
   // Comportements (gestionnaires d'événement ou "event handlers")
-  const productToEdit = menu.find((product) => product.id === productIsSelected);
+  const productToEdit         = menu.find((product) => product.id === productIsSelected);
+  const productToEditInBasket = basket.find((product) => product.id === productIsSelected);
 
   const handleEditForm = (event) => { 
     const name = event.target.name;
     const value = event.target.value;
 
-    productToEdit[name] = value;
+    productToEdit[name]         = value;
+    productToEditInBasket[name] = value;
 
     handleEditProduct(productToEdit);
+    handleEditProductInBasket(productToEditInBasket);
  }
 
  const inputTexts = getInputTextsConfig(handleEditForm, productToEdit);

@@ -5,7 +5,7 @@ import { theme } from "../../../../../theme";
 
 export default function AddToBasket({ image, title, price, quantity, onDelete, onSelect, isModeAdmin, productIsSelected, id }) {
   return (
-    <AddToBasketStyled onClick={onSelect} isModeAdmin={isModeAdmin} productIsSelected={productIsSelected} id={id} >
+    <AddToBasketStyled onClick={isModeAdmin ? onSelect : null} isModeAdmin={isModeAdmin} productIsSelected={productIsSelected} id={id} >
          <img src={image} alt={title} />
          <div className="text-info">
              <div className="left-info">

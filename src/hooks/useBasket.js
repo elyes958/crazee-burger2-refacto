@@ -23,5 +23,12 @@ export const useBasket = () => {
     setBasket(copyUpdate);
   }
 
-   return {basket, handleAddToBasket ,handleQuantityProductInBasket ,handleDeleteProductInBasket}
+  const handleEditProductInBasket = (productToEdit) => { 
+    const copy = deepClone(basket); 
+    const indexProductInMenu = copy.findIndex((product) => product.id === productToEdit.id);
+    copy[indexProductInMenu] = productToEdit;
+    setBasket(copy);
+  }
+
+   return {basket, handleAddToBasket ,handleQuantityProductInBasket ,handleDeleteProductInBasket, handleEditProductInBasket}
 }
