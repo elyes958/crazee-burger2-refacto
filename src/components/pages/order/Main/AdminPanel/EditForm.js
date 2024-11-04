@@ -19,11 +19,15 @@ export default function EditForm() {
     const name = event.target.name;
     const value = event.target.value;
 
+    // modification du menu
     productToEdit[name]         = value;
-    productToEditInBasket[name] = value;
-
     handleEditProduct(productToEdit);
-    handleEditProductInBasket(productToEditInBasket);
+
+    // modification du basket
+    if(productToEditInBasket !== undefined){
+      productToEditInBasket[name] = value;
+      handleEditProductInBasket(productToEditInBasket);
+    }
  }
 
  const inputTexts = getInputTextsConfig(handleEditForm, productToEdit);

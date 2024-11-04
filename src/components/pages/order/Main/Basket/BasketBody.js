@@ -8,13 +8,15 @@ import OrderContext from "../../../../../context/OrderContext";
 
 export default function BasketBody() {
   // State
-  const { basket, handleDeleteProductInBasket, isModeAdmin, productIsSelected, setProductIsSelected, setDisplayPanel , setSelectTab } = useContext(OrderContext);
+  const { basket, handleDeleteProductInBasket, isModeAdmin, productIsSelected, setProductIsSelected, setDisplayPanel , setSelectTab, inputComponentRef } = useContext(OrderContext);
 
   // Comportements
-  const handleSelectInBasket = (id) => { 
-    setProductIsSelected(id);
-    setDisplayPanel(true);
-    setSelectTab("edit");
+  const handleSelectInBasket = async (id) => { 
+    await setProductIsSelected(id);
+    await setDisplayPanel(true);
+    await setSelectTab("edit");
+
+    inputComponentRef.current.focus();
   }
 
   return (
