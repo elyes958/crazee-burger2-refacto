@@ -18,7 +18,7 @@ export const useBasket = () => {
   }
 
   const handleDeleteProductInBasket = (idToDelete) => { 
-    const copy       = deepClone(basket);
+    const copy       = deepClone(basket); // ici on a pas besoin de cet ligne car filter nous return un nouveau tableau on agit donc pas sur le state ce qui est bon
     const copyUpdate = copy.filter((product) => product.id !== idToDelete);
     setBasket(copyUpdate);
   }
