@@ -21,7 +21,7 @@ export default function OrderPage() {
    const [productIsSelected, setProductIsSelected] = useState("");
    const inputComponentRef = useRef();
    const {menu, handleAddProduct, handleDeleteCard, handleResetMenu, handleEditProduct} = useMenu(); // on recupere tout via le custom hooks qui nous permet d'avoir beaucoup moins de ligne de state dans la page order en extrayant le state et les comportement qui lui sont lie dans un custom hook
-   const {basket, handleAddToBasket, handleQuantityProductInBasket , handleDeleteProductInBasket} = useBasket(); // pareil pour le basket
+   const {basket, handleAddToBasket, handleQuantityProductInBasket , handleDeleteProductInBasket, handleEditProductInBasket} = useBasket(); // pareil pour le basket
 
 
   const orderContextValue = {
@@ -54,6 +54,7 @@ export default function OrderPage() {
     handleAddToBasket,
     handleQuantityProductInBasket,
     handleDeleteProductInBasket,
+    handleEditProductInBasket,
   };
 
   // affichage

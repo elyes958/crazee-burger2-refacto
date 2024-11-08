@@ -18,10 +18,17 @@ export const useBasket = () => {
   }
 
   const handleDeleteProductInBasket = (idToDelete) => { 
-    const copy       = deepClone(basket);
+    const copy       = deepClone(basket); // ici on a pas besoin de cet ligne car filter nous return un nouveau tableau on agit donc pas sur le state ce qui est bon
     const copyUpdate = copy.filter((product) => product.id !== idToDelete);
     setBasket(copyUpdate);
   }
 
-   return {basket, handleAddToBasket ,handleQuantityProductInBasket ,handleDeleteProductInBasket}
+  const handleEditProductInBasket = (productToEdit) => { 
+    const copy = deepClone(basket); 
+    const indexProductInMenu = copy.findIndex((product) => product.id === productToEdit.id);
+    copy[indexProductInMenu] = productToEdit;
+    setBasket(copy);
+  }
+
+   return {basket, handleAddToBasket ,handleQuantityProductInBasket ,handleDeleteProductInBasket, handleEditProductInBasket}
 }
